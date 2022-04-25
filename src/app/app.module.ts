@@ -28,7 +28,6 @@ import { CarouselModule } from 'primeng/carousel';
 import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +56,7 @@ import { CardModule } from 'primeng/card';
     CarouselModule,
     HttpClientModule,
     DividerModule,
-    CardModule
+    CardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
