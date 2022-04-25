@@ -43,4 +43,11 @@ export class ProductService {
     const data = <ProductInterface[]>res.data;
     return data;
   }
+
+  async getOfertas() {
+    const res = await this.http!.get<any>('assets/ofertas.json')
+    .toPromise();
+    const data = <ProductInterface[]>res.data;
+    return data;
+  }
 }

@@ -6,6 +6,7 @@ import { JuegosComponent } from './pages/categorias/juegos/juegos.component';
 import { SoftwareComponent } from './pages/categorias/software/software.component';
 import { SuscripcionesComponent } from './pages/categorias/suscripciones/suscripciones.component';
 import { HomeComponent } from './pages/home/home.component';
+import { OfertasComponent } from './pages/ofertas/ofertas.component';
 
 const routes: Routes = [
   {
@@ -30,7 +31,11 @@ const routes: Routes = [
   },
   {
     path: 'e-books',
-    component: EBooksComponent
+    component: EBooksComponent,
+  },
+  {
+    path: 'ofertas',
+    component: OfertasComponent,
   }
 ];
 

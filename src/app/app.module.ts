@@ -33,6 +33,7 @@ import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { RatingModule } from 'primeng/rating';
 import { SkeletonModule } from 'primeng/skeleton';
+import { OfertasComponent } from './pages/ofertas/ofertas.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { SkeletonModule } from 'primeng/skeleton';
     SuscripcionesComponent,
     EBooksComponent,
     FooterComponent,
+    OfertasComponent,
   ],
   imports: [
     BrowserModule,

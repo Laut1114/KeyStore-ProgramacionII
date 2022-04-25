@@ -105,6 +105,7 @@ export class NavbarComponent implements OnInit {
       {
         label: 'Ofertas',
         icon: 'pi pi-fw pi-tags',
+        routerLink: 'ofertas'
       },
       {
         label: 'User',

@@ -1,0 +1,94 @@
+{
+	"data": [
+		{
+			"id": "1000",
+			"nombre": "Microsoft Windows 10 Home key",
+            "precio": 2100,
+            "descuento": "%60",
+            "precioFin": 840,
+			"categoria": "Sistemas Operativos",
+            "url": "https://img.g2a.com/323x433/1x1x0/microsoft-windows-10-home-microsoft-key-global/5d6f6b2e7e696c549e1fc323"
+		},
+		{
+			"id": "1001",
+			"nombre": "McAfee AntiVirus PC 1 Device 1 Year",
+			"precio": 500,
+            "descuento": "%6",
+            "precioFin": 470,
+			"categoria": "Antivirus",
+            "url": "https://img.g2a.com/323x433/1x1x0/mcafee-antivirus-pc-1-device-1-year-mcafee-key-global/5c1b599dae653a12cd11fac2"
+		},
+        {
+			"id": "1002",
+			"nombre": "Steam Gift Card 1000 ARS",
+			"precio": 1180,
+            "descuento": "%12",
+            "precioFin": 1038.40,
+			"categoria": "Gift Cards",
+            "url": "https://img.g2a.com/323x433/1x1x0/steam-gift-card-1000-ars-steam-key/5c405f64ae653a4ae53570e3"
+		},
+        {
+			"id": "1003",
+			"nombre": "Grand Theft Auto V (Xbox One)",
+			"precio": 3200,
+            "descuento": "%24",
+            "precioFin": 2432,
+			"categoria": "Juegos",
+            "url": "https://img.g2a.com/323x433/1x1x0/grand-theft-auto-v-xbox-live-key-global/5b4da75d5bafe33eb737aa4f"
+		},
+        {
+			"id": "1004",
+			"nombre": "Dark Souls: Remastered - Steam key",
+			"precio": 5500,
+            "descuento": "%40",
+            "precioFin": 3300,
+			"categoria": "Juegos",
+            "url": "https://img.g2a.com/323x433/1x1x0/dark-souls-remastered-steam-key-global/5b06213d5bafe3c52369c012"
+		},
+        {
+			"id": "1005",
+			"nombre": "Playstation Plus CARD 365 Days",
+			"precio": 6900,
+            "descuento": "%32",
+            "precioFin": 4692,
+			"categoria": "Suscripciones",
+            "url": "https://img.g2a.com/323x452/1x1x0/playstation-plus-card-365-days-psn-united-states/006e79e89e77430db8ff25ff"
+		},
+        {
+			"id": "1006",
+			"nombre": "Amazon Gift Card 10 USD - Key ",
+			"precio": 1200,
+            "descuento": "%8",
+            "precioFin": 1104,
+			"categoria": "Gift Cards",
+            "url": "https://img.g2a.com/323x433/1x1x0/amazon-gift-card-10-usd-amazon-key-united-states/5ddd02d77e696c6980294e32"
+		},
+        {
+			"id": "1007",
+			"nombre": "Google Play Gift Card 5 USD",
+			"precio": 600,
+            "descuento": "%5",
+            "precioFin": 570,
+			"categoria": "Gift Cards",
+            "url": "https://img.g2a.com/323x433/1x1x0/google-play-gift-card-5-usd-united-states/59e5ed055bafe3e2767344e0"
+		},
+        {
+			"id": "1008",
+			"nombre": "Adobe Photoshop Elements 2022",
+			"precio": 8800,
+            "descuento": "%48",
+            "precioFin": 4576,
+			"categoria": "Diseño e Ilustración",
+            "url": "https://img.g2a.com/323x433/1x1x0/adobe-photoshop-elements-2022-pc-mac-adobe-key-global/946146087af54b9f83524492"
+		},
+        {
+			"id": "1009",
+			"nombre": "Microsoft Windows 11 Pro",
+			"precio": 4400,
+            "descuento": "%15",
+            "precioFin": 3740,
+			"categoria": "Software",
+            "url": "https://img.g2a.com/323x433/1x1x0/microsoft-windows-11-pro-pc-microsoft-key-global/f0fcf80e6cf84e518c39d5b6"
+		}
+	]
+}

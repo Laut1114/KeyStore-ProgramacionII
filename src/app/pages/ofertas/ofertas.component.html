@@ -1,0 +1,36 @@
+<p-messages severity="custom" [style]="{'background-color': '#D1C4E9', 'border-radius' : '4px'}">
+    <ng-template pTemplate>
+        <div class="ml-6" style="height: 1.2em; font-size: 1.4em; color: #673AB7;">Ofertas</div>
+    </ng-template>
+</p-messages>
+<br>
+<p-table [value]="ofertas" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nombre</th>
+            <th>Imagen</th>
+            <th>Categoria</th>
+            <th>Precio</th>
+            <th>Precio Final</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-ofertas>
+        <tr>
+            <td>{{ofertas.nombre}}</td>
+            <td><img src="{{ofertas.url}}" [alt]="ofertas.name" width="100" class="shadow-4" /></td>
+            <td>{{ofertas.categoria}}</td>
+            <td style="text-decoration: line-through;">{{ofertas.precio | currency:'ARS $'}}</td>
+            <td>(-{{ofertas.descuento}}) {{ofertas.precioFin | currency:'ARS $'}}</td>
+            <td>
+                <p-button label="Comprar" icon="pi pi-shopping-bag" styleClass="p-button-outlined"></p-button>
+                <button type="button" pButton label="" icon="pi pi-shopping-cart" style="width: 48px; margin-left: 15px;"></button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+            En total hay {{ofertas ? ofertas.length - 1 : 0 }} ofertas.
+        </div>
+    </ng-template>
+</p-table>
