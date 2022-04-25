@@ -1,0 +1,85 @@
+{
+	"data": [
+		{
+			"id": "4001",
+			"nombre": "Playstation Plus CARD 365 Days",
+			"precio": 6900,
+            "plataforma": "PSN",
+            "rating": 4,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x452/1x1x0/playstation-plus-card-365-days-psn-united-states/006e79e89e77430db8ff25ff"
+		},
+		{
+			"id": "4002",
+			"nombre": "Xbox Live GOLD Subscription Card 1 Month",
+			"precio": 1100,
+            "plataforma": "Xbox Live",
+            "rating": 2,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x452/1x1x0/xbox-live-gold-subscription-card-1-month-xbox-live-global/5ae232565bafe33bd919a61a"
+		},
+        {
+			"id": "4003",
+			"nombre": "Xbox Live GOLD Subscription Card 3 Months",
+			"precio": 1600,
+            "plataforma": "Xbox Live",
+            "rating": 4,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x452/1x1x0/xbox-live-gold-subscription-card-3-months-xbox-live-global/5ae2324bae653ad0a4532f78"
+		},
+        {
+			"id": "4004",
+			"nombre": "Spotify Premium Subscription Card 4 Months",
+			"precio": 1600,
+			"plataforma": "Spotify",
+            "rating": 5,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x433/1x1x0/spotify-premium-subscription-card-4-months-trial-spotify-key-global/47d7f67af51f4800b8dbe7ed"
+		},
+        {
+			"id": "4005",
+			"nombre": "Google Stadia 3 Months",
+			"precio": 1012,
+            "plataforma": "Google Stadia",
+            "rating": 1,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x433/1x1x0/google-stadia-3-months-trial-google-stadia-key-global/c9442158aafb4ff2b03a5652"
+		},
+        {
+			"id": "4006",
+			"nombre": "Crunchyroll Premium 12 Months",
+			"precio": 6800,
+            "plataforma": "Crunchyroll",
+            "rating": 4,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x433/1x1x0/crunchyroll-premium-12-months-crunchyroll-key-global/f2d1a33f321e49b8b42b7567"
+		},
+        {
+			"id": "4007",
+			"nombre": "Dolby Atmos for Headphones",
+			"precio": 500,
+            "plataforma": "Xbox Live/Windows 10",
+            "rating": 5,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x433/1x1x0/dolby-atmos-for-headphones-xbox-windows-10-xbox-live-key-argentina/3bfabada66f74b6baf63c5fe"
+		},
+        {
+			"id": "4008",
+			"nombre": "Disney Plus 1 Year Subscription",
+			"precio": 5300,
+            "plataforma": "Disney+",
+            "rating": 4,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x433/1x1x0/disney-plus-1-year-subscription-disney-key-united-kingdom/10dc5802d40143448e48dc78"
+		},
+        {
+			"id": "4009",
+			"nombre": "Tidal Premium 3 Months",
+			"precio": 902,
+            "plataforma": "Tidal",
+            "rating": 3,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x433/1x1x0/tidal-premium-3-months-tidal-key-united-states/8bc03576ddc1469e83863551"
+		}
+	]
+}

@@ -1,1 +1,39 @@
-<p>juegos works!</p>
+<p-messages severity="success">
+    <ng-template pTemplate>
+        <div class="ml-6" style="height: 1.2em; font-size: 1.4em;">Juegos</div>
+    </ng-template>
+</p-messages>
+<br>
+<p-table [value]="juegos" responsiveLayout="scroll">
+    <ng-template pTemplate="success">
+        <div class="flex align-items-center justify-content-between" >
+            Juegos
+            <!-- <p-button icon="pi pi-refresh"></p-button> -->
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nombre</th>
+            <th>Imagen</th>
+            <th>Precio</th>
+            <th>Plataforma</th>
+            <th>Reviews</th>
+            <th>Status</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-juego>
+        <tr>
+            <td>{{juego.nombre}}</td>
+            <td><img src="{{juego.url}}" [alt]="juego.name" width="100" class="shadow-4" /></td>
+            <td>{{juego.precio | currency:'ARS $'}}</td>
+            <td>{{juego.plataforma}}</td>
+            <td><p-rating [ngModel]="juego.rating" [readonly]="true" [cancel]="false"></p-rating></td>
+            <td><span [class]="'product-badge status-' + juego.status.toLowerCase()">{{juego.status}}</span></td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+            En total hay {{juegos ? juegos.length - 1 : 0 }} juegos en stock.
+        </div>
+    </ng-template>
+</p-table>

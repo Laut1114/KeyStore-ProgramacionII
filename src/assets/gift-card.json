@@ -1,0 +1,112 @@
+{
+	"data": [
+		{
+			"id": "3000",
+			"nombre": "Steam Gift Card 50 USD",
+            "precio": 6200,
+            "plataforma": "Steam",
+            "rating": 5,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x433/1x1x0/steam-gift-card-50-usd-steam-key-global/867bf953149d4926b01826ab"
+		},
+		{
+			"id": "3002",
+			"nombre": "PlayStation Network Gift Card 50 USD",
+			"precio": 7800,
+            "plataforma": "PSN",
+            "rating": 3,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x433/1x1x0/playstation-network-gift-card-50-usd-psn-united-states/c93803d0304845249ad0d39f"
+		},
+        {
+			"id": "3003",
+			"nombre": "PlayStation Network Gift Card 25 USD",
+			"precio": 3350,
+            "plataforma": "PSN",
+            "rating": 3,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x433/1x1x0/playstation-network-gift-card-25-usd-psn-united-states/5d81ced046177c7384526bd2"
+		},
+        {
+			"id": "3004",
+			"nombre": "Blizzard Gift-Card 20 USD",
+			"precio": 2600,
+			"plataforma": "Battle.net",
+            "rating": 2,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x433/1x1x0/blizzard-gift-card-20-eur-battlenet-europe/59126ddb5bafe3d7db523b07"
+		},
+        {
+			"id": "3005",
+			"nombre": "XBOX Live Gift Card 10 USD",
+			"precio": 1200,
+            "plataforma": "Xbox Live",
+            "rating": 4,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x433/1x1x0/xbox-live-gift-card-united-states-10-usd-xbox-live-key/5966be6c5bafe394da2ecdc2"
+		},
+        {
+			"id": "3006",
+			"nombre": "League of Legends Gift Card 20 USD",
+			"precio": 3200,
+            "plataforma": "Riot",
+            "rating": 4,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x433/1x1x0/league-of-legends-gift-card-20-eur-riot-key-europe/5c91f3bd5bafe31e8212c5b2"
+		},
+        {
+			"id": "3007",
+			"nombre": "Nintendo eShop Card Nintendo 50 USD",
+			"precio": 6000,
+            "plataforma": "Nintendo",
+            "rating": 3,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x433/1x1x0/nintendo-eshop-card-50-eur-nintendo-europe/5d8df1be46177c26c02ab9d3"
+		},
+        {
+			"id": "3008",
+			"nombre": "Steam Gift Card 500 ARS",
+			"precio": 650,
+            "plataforma": "Steam",
+            "rating": 5,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x433/1x1x0/steam-gift-card-500-ars-steam-key/5c405f64ae653a4ae53570e3"
+		},
+        {
+			"id": "3009",
+			"nombre": "XBOX Live Gift Card 25 USD",
+			"precio": 4200,
+            "plataforma": "Xbox Live",
+            "rating": 4,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x433/1x1x0/xbox-live-gift-card-united-states-10-usd-xbox-live-key/5966be6c5bafe394da2ecdc2"
+		},
+        {
+			"id": "30011",
+			"nombre": "Steam Gift Card 1000 ARS",
+			"precio": 1500,
+            "plataforma": "Steam",
+            "rating": 5,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x433/1x1x0/steam-gift-card-1000-ars-steam-key/5c405f64ae653a4ae53570e3"
+		},
+        {
+			"id": "30012",
+			"nombre": "Google Play Gift Card 5 USD",
+			"precio": 1500,
+            "plataforma": "Google Play",
+            "rating": 5,
+			"status": "Stock",
+            "url": "https://img.g2a.com/323x433/1x1x0/google-play-gift-card-5-usd-united-states/59e5ed055bafe3e2767344e0"
+		},
+		{
+			"id": "3010",
+			"nombre": "Amazon Gift Card 10 USD - Key ",
+			"precio": 1500,
+            "plataforma": "Amazon",
+            "rating": 3,
+			"status": "Sin Stock",
+            "url": "https://img.g2a.com/323x433/1x1x0/amazon-gift-card-10-usd-amazon-key-united-states/5ddd02d77e696c6980294e32"
+		}
+	]
+}

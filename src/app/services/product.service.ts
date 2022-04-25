@@ -15,4 +15,32 @@ export class ProductService {
     const data = <ProductInterface[]>res.data;
     return data;
   }
+
+  async getJuegos() {
+    const res = await this.http!.get<any>('assets/juegos.json')
+    .toPromise();
+    const data = <ProductInterface[]>res.data;
+    return data;
+  }
+
+  async getSoftware() {
+    const res = await this.http!.get<any>('assets/software.json')
+    .toPromise();
+    const data = <ProductInterface[]>res.data;
+    return data;
+  }
+
+  async getGiftCards() {
+    const res = await this.http!.get<any>('assets/gift-card.json')
+    .toPromise();
+    const data = <ProductInterface[]>res.data;
+    return data;
+  }
+
+  async getSuscriptions() {
+    const res = await this.http!.get<any>('assets/suscripciones.json')
+    .toPromise();
+    const data = <ProductInterface[]>res.data;
+    return data;
+  }
 }

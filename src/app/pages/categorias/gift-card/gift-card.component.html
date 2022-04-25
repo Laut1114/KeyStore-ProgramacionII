@@ -1,1 +1,46 @@
-<p>gift-card works!</p>
+<p-messages severity="custom" [style]="{'background-color': '#E1BEE7', 'border-radius' : '4px'}">
+    <ng-template pTemplate>
+        <div class="ml-6" style="height: 1.2em; font-size: 1.4em; color: #9C27B0;">Gift Cards</div>
+    </ng-template>
+</p-messages>
+<br>
+<p-table [value]="giftCard" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nombre</th>
+            <th>Imagen</th>
+            <th>Precio</th>
+            <th>Plataforma</th>
+            <th>Reviews</th>
+            <th>Status</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-giftCard>
+        <tr>
+            <td>{{giftCard.nombre}}</td>
+            <td><img src="{{giftCard.url}}" [alt]="giftCard.name" width="100" class="shadow-4" /></td>
+            <td>{{giftCard.precio | currency:'ARS $'}}</td>
+            <td>{{giftCard.plataforma}}</td>
+            <td><p-rating [ngModel]="giftCard.rating" [readonly]="true" [cancel]="false"></p-rating></td>
+            <td><span [class]="'product-badge status-' + giftCard.status.toLowerCase()">{{giftCard.status}}</span></td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+            En total hay {{giftCard ? giftCard.length - 1 : 0 }} gift cards en stock.
+        </div>
+    </ng-template>
+</p-table>
+<br>
+<div class="bg-bluegray-900 text-gray-100 p-3 flex justify-content-between lg:justify-content-center align-items-center flex-wrap" style="position: sticky; bottom: 0;" >
+    <div class="font-bold mr-8 text-white" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">🔥 Ultimas Ofertas!</div>
+    <div class="align-items-center hidden lg:flex">
+        <span class="line-height-3 text-white" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Compra los mejores productos con hasta un -60% descuento.</span>
+    </div>
+    <a class="flex align-items-center ml-2 mr-8">
+        <a class="text-white" routerLink="/ofertas"><span class="underline font-bold" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" >Learn More</span></a>
+    </a>
+    <a pRipple class="flex align-items-center no-underline justify-content-center border-circle text-gray-50  text-white hover:bg-bluegray-700 cursor-pointer transition-colors transition-duration-150" style="width:2rem; height: 2rem;">
+        <i class="pi pi-times"></i>
+    </a>
+</div>

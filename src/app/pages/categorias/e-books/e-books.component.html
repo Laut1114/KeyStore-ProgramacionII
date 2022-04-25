@@ -1,1 +1,28 @@
-<p>e-books works!</p>
+<p-messages severity="custom" [style]="{'background-color': '#FFE0B2', 'border-radius' : '4px'}">
+    <ng-template pTemplate>
+        <div class="ml-6" style="height: 1.2em; font-size: 1.4em; color: #FF9800;">e-Books</div>
+    </ng-template>
+</p-messages>
+<br>
+<p-table [value]="books" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nombre</th>
+            <th>Imagen</th>
+            <th>Precio</th>
+            <th>Genero</th>
+            <th>Reviews</th>
+            <th>Status</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+        </tr>
+    </ng-template>
+</p-table>

@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ScrollingModule  } from '@angular/cdk/scrolling';
+import { FormsModule } from '@angular/forms';
+
 
 //-------- COMPONENTS -----------
 import { AppComponent } from './app.component';
@@ -27,6 +30,9 @@ import { MessagesModule } from 'primeng/messages';
 import { CarouselModule } from 'primeng/carousel';
 import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
+import { TableModule } from 'primeng/table';
+import { RatingModule } from 'primeng/rating';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
   declarations: [
@@ -47,6 +53,7 @@ import { CardModule } from 'primeng/card';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     MenubarModule,
     InputTextModule,
@@ -57,6 +64,10 @@ import { CardModule } from 'primeng/card';
     HttpClientModule,
     DividerModule,
     CardModule,
+    TableModule,
+    ScrollingModule,
+    RatingModule,
+    SkeletonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

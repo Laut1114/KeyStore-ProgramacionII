@@ -1,1 +1,38 @@
-<p>software works!</p>
+<p-messages severity="info">
+    <ng-template pTemplate>
+        <div class="ml-6" style="height: 1.2em; font-size: 1.4em;">Software</div>
+    </ng-template>
+</p-messages>
+<br>
+<p-table [value]="software" responsiveLayout="scroll">
+    <ng-template pTemplate="success">
+        <div class="flex align-items-center justify-content-between" >
+            Software
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nombre</th>
+            <th>Imagen</th>
+            <th>Precio</th>
+            <th>Plataforma</th>
+            <th>Reviews</th>
+            <th>Status</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-software>
+        <tr>
+            <td>{{software.nombre}}</td>
+            <td><img src="{{software.url}}" [alt]="software.name" width="100" class="shadow-4" /></td>
+            <td>{{software.precio | currency:'ARS $'}}</td>
+            <td>{{software.plataforma}}</td>
+            <td><p-rating [ngModel]="software.rating" [readonly]="true" [cancel]="false"></p-rating></td>
+            <td><span [class]="'product-badge status-' + software.status.toLowerCase()">{{software.status}}</span></td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+            En total hay {{software ? software.length - 1 : 0 }} productos en stock.
+        </div>
+    </ng-template>
+</p-table>
