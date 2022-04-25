@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
       {
         label: 'Inicio',
         icon: 'pi pi-fw pi-home',
+        routerLink: '/'
       },
       {
         label: 'Categorias',
@@ -25,11 +26,13 @@ export class NavbarComponent implements OnInit {
         items: [
           {
             label: 'Juegos',
-            icon: 'pi pi-fw pi-caret-right'
+            icon: 'pi pi-fw pi-caret-right',
+            routerLink: 'juegos'
           },
           {
             label: 'Software',
             icon: 'pi pi-fw pi-desktop',
+            routerLink: 'software',
             items: [
               {
                 label: 'Sistemas Operativos',
@@ -48,6 +51,7 @@ export class NavbarComponent implements OnInit {
           {
             label: 'Gift Cards',
             icon: 'pi pi-fw pi-credit-card',
+            routerLink: 'gift-cards',
             items: [
               {
                 label: 'Amazon',
@@ -70,6 +74,7 @@ export class NavbarComponent implements OnInit {
           {
             label: 'Subscripciones',
             icon: 'pi pi-fw pi-ticket',
+            routerLink: 'suscripciones',
             items: [
               {
                 label: 'Youtube Premium',
@@ -91,7 +96,8 @@ export class NavbarComponent implements OnInit {
           },
           {
             label: 'eBooks',
-            icon: 'pi pi-fw pi-book'
+            icon: 'pi pi-fw pi-book',
+            routerLink: 'e-books',
           },
 
         ]
@@ -101,7 +107,7 @@ export class NavbarComponent implements OnInit {
         icon: 'pi pi-fw pi-tags',
       },
       {
-        label: 'Users',
+        label: 'User',
         icon: 'pi pi-fw pi-user',
         items: [
           {
