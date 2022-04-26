@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -11,7 +12,14 @@ export class NavbarComponent implements OnInit {
 
   items!: MenuItem[];
 
-  constructor() { }
+  usuario =  {
+    email: "",
+    password: ""
+  };
+
+  userloged: boolean = false;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.items = [
@@ -107,25 +115,32 @@ export class NavbarComponent implements OnInit {
         icon: 'pi pi-fw pi-tags',
         routerLink: 'ofertas'
       },
-      {
-        label: 'User',
-        icon: 'pi pi-fw pi-user',
-        items: [
-          {
-            label: 'Iniciar Sesión',
-            icon: 'pi pi-fw pi-sign-in',
-
-          },
-          {
-            label: 'Cerrar Sesión',
-            icon: 'pi pi-fw pi-sign-out',
-          },
-          {
-            label: 'Ajustes',
-            icon: 'pi pi-fw pi-cog'
-          }
-        ]
-      },
     ];
   }
+
+  //LOGIN CON GOOGLE -----------------
+  ingresarGoogle() {
+    const {email, password} = this.usuario;
+    this.authService.loginGoogle(email, password).then(res => {
+        console.log("Usuario logeado: ", res)
+        this.userloged = true
+    });
+  }
+
+  cerrarSesion() {
+    this.authService.logout().then(res => {
+      console.log("Usuario deslogeado: ", res)
+      this.userloged = false
+    });
+  }
+
+  userlog () {
+    if (this.userloged == false){ 
+      this.ingresarGoogle()
+    } 
+    else {
+      this.cerrarSesion()
+    }
+  }
+  
 }

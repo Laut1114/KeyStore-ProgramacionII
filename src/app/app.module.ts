@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ScrollingModule  } from '@angular/cdk/scrolling';
 import { FormsModule } from '@angular/forms';
 
-
 //-------- COMPONENTS -----------
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -20,6 +19,7 @@ import { SuscripcionesComponent } from './pages/categorias/suscripciones/suscrip
 import { EBooksComponent } from './pages/categorias/e-books/e-books.component';
 import { CarrouselHomeComponent } from './pages/home/components/carrousel-home/carrousel-home.component';
 import { CardHomeComponent } from './pages/home/components/card-home/card-home.component';
+import { OfertasComponent } from './pages/ofertas/ofertas.component';
 
 // -------- PRIMENG -----------
 import { MenubarModule } from 'primeng/menubar';
@@ -33,25 +33,31 @@ import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { RatingModule } from 'primeng/rating';
 import { SkeletonModule } from 'primeng/skeleton';
-import { OfertasComponent } from './pages/ofertas/ofertas.component';
+
+//-------- FIREBASE -----------
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent,
     //COMPONENTES DEL HOME -----------------
+    HomeComponent,
     CarrouselHomeComponent,
     CardHomeComponent,
     //--------------------------------------
-    SignInComponent,
+    //COMPONENTES DE CATEGORIAS ------------
     JuegosComponent,
     SoftwareComponent,
     GiftCardComponent,
     SuscripcionesComponent,
     EBooksComponent,
-    FooterComponent,
+    //--------------------------------------
     OfertasComponent,
+    SignInComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +75,9 @@ import { OfertasComponent } from './pages/ofertas/ofertas.component';
     TableModule,
     ScrollingModule,
     RatingModule,
-    SkeletonModule
+    SkeletonModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
