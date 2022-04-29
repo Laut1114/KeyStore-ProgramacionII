@@ -1,6 +1,7 @@
 // -------- MODULOS -----------
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ScrollingModule  } from '@angular/cdk/scrolling';
@@ -33,6 +34,8 @@ import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { RatingModule } from 'primeng/rating';
 import { SkeletonModule } from 'primeng/skeleton';
+import { ToastModule } from 'primeng/toast';
+
 
 //-------- FIREBASE -----------
 import { AngularFireModule } from '@angular/fire/compat';
@@ -61,6 +64,7 @@ import { environment } from 'src/environments/environment';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
     MenubarModule,
@@ -74,6 +78,7 @@ import { environment } from 'src/environments/environment';
     CardModule,
     TableModule,
     ScrollingModule,
+    ToastModule,
     RatingModule,
     SkeletonModule,
     AngularFireModule.initializeApp(environment.firebase),

@@ -1,0 +1,11 @@
+.user-button {
+    width: 48px; 
+    margin-left: 15px; 
+    background-color: transparent; 
+    color: darkgray;
+}
+
+.user-button-logged {
+    width: 48px; 
+    margin-left: 15px; 
+}

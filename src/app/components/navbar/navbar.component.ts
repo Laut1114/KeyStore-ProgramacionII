@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
+  providers: [MessageService]
 })
 export class NavbarComponent implements OnInit {
 
@@ -19,7 +20,7 @@ export class NavbarComponent implements OnInit {
 
   userloged: boolean = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private messageService : MessageService) { }
 
   ngOnInit() {
     this.items = [
@@ -118,28 +119,36 @@ export class NavbarComponent implements OnInit {
     ];
   }
 
+  loginMsg() {
+    this.messageService.add({key: 'bc', severity:'info', summary:'Bienvenido', detail:'Usuario logeado correctamente'});
+  }
+
+  logoutMsg() {
+    this.messageService.add({key: 'bc', severity:'warn', summary:'Adios', detail:'Se ha cerrado sesión'});
+  }
+
   //LOGIN CON GOOGLE -----------------
   ingresarGoogle() {
     const {email, password} = this.usuario;
-    this.authService.loginGoogle(email, password).then(res => {
-        console.log("Usuario logeado: ", res)
-        this.userloged = true
+    this.authService.loginGoogle(email, password).then(() => {
+        this.loginMsg();
+        this.userloged = true;
     });
   }
 
   cerrarSesion() {
-    this.authService.logout().then(res => {
-      console.log("Usuario deslogeado: ", res)
-      this.userloged = false
+    this.authService.logout().then(() => {
+      this.logoutMsg();
+      this.userloged = false;
     });
   }
 
-  userlog () {
+  userlog() {
     if (this.userloged == false){ 
-      this.ingresarGoogle()
+      this.ingresarGoogle();
     } 
     else {
-      this.cerrarSesion()
+      this.cerrarSesion();
     }
   }
 }

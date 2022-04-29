@@ -3,8 +3,10 @@
         <img src="assets/images/logonavbar.png" height="35" class="mr-2" style="margin-right: 20px; margin-left: 15px;">
     </ng-template>
     <div>
-        <input type="text" pInputText placeholder="Search">
+        <input type="text" pInputText placeholder="Buscar">
         <button type="button" pButton icon="pi pi-shopping-cart" style="width: 48px; margin-left: 15px;"></button>
-        <button type="button" pButton icon="pi pi-user" style="width: 48px; margin-left: 15px; background-color: transparent; color: darkgray;" (click)="userlog()" ></button>
+        <button [ngClass]="userloged ? 'user-button-logged' : 'user-button'" type="button" pButton icon="pi pi-user" (click)="userlog()" ></button>
     </div>
+    
 </p-menubar>
+<p-toast position="bottom-center" key="bc"></p-toast>
