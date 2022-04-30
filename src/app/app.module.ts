@@ -35,12 +35,13 @@ import { TableModule } from 'primeng/table';
 import { RatingModule } from 'primeng/rating';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ToastModule } from 'primeng/toast';
-
+import { TimelineModule } from 'primeng/timeline';
 
 //-------- FIREBASE -----------
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
+import { ProcesoCompraComponent } from './pages/home/components/proceso-compra/proceso-compra.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { environment } from 'src/environments/environment';
     OfertasComponent,
     SignInComponent,
     FooterComponent,
+    ProcesoCompraComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,6 +82,7 @@ import { environment } from 'src/environments/environment';
     ScrollingModule,
     ToastModule,
     RatingModule,
+    TimelineModule,
     SkeletonModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

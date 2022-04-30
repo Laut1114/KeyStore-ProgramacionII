@@ -1,11 +1,25 @@
 .user-button {
-    width: 48px; 
-    margin-left: 15px; 
-    background-color: transparent; 
-    color: darkgray;
+    width: 100px;
+    margin-left: 3.5em; 
+    background-color: transparent;
+    color: #cfd8dc;
 }
 
 .user-button-logged {
+    width: 100px;
+    margin-left: 3.5em;
+}
+
+#shop-cart-button {
     width: 48px; 
-    margin-left: 15px; 
+    margin-left: 1.5em;
+    color: #cfd8dc; 
+}
+
+#input-buscar {
+    background-color: transparent;
+    width: 25em;
+    margin-right: .3em;
+    border-color: #1e88e5;
+    color: #cfd8dc;
 }

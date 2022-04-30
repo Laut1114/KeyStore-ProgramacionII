@@ -1,0 +1,18 @@
+<div class="card" style="margin-top: 10em; margin-inline: 5em;">
+	<h2>Proceso de Compra</h2>
+	<p-timeline [value]="steps" align="alternate" styleClass="customized-timeline">
+		<ng-template pTemplate="marker" let-event>
+			<span class="custom-marker p-shadow-2" [style.backgroundColor]="event.color">
+                <i [ngClass]="event.icon"></i>
+            </span>
+		</ng-template>
+		<ng-template pTemplate="content" let-event>
+			<p-card [header]="event.status">
+				<span id="event-text">{{event.text}}</span>
+                <ng-template pTemplate="footer">
+                    <button pButton label="Leer mas" class="p-button-text"></button>
+                </ng-template>
+			</p-card>
+		</ng-template>
+	</p-timeline>
+</div>
