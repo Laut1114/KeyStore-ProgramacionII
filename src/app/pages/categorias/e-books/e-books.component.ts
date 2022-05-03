@@ -14,7 +14,7 @@ export class EBooksComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.productService.getSuscriptions().then(data => this.books = data);
+    this.productService.getProducts().then(data => this.books = data);
   }
 
 }

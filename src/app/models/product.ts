@@ -1,9 +1,11 @@
 export interface ProductInterface {
-    id: String;
-    nombre: String;
-    precio: Number;
-    descripcion: String;
-    categoria: String;
-    status: String;
-    url: String;
+    id: string;
+    nombre: string;
+    precio: number;
+    plataforma: string,
+    descripcion: string;
+    rating: number;
+    categoria: string;
+    status: string;
+    url: string;
 }

@@ -1,14 +1,13 @@
-<p-messages severity="success">
+<p-messages severity="custom" [style]="{'background-color': '#e2e2e2', 'border-radius' : '4px'}">
     <ng-template pTemplate>
-        <div class="ml-6" style="height: 1.2em; font-size: 1.4em;">Juegos</div>
+        <div class="ml-6" style="height: 1.2em; font-size: 1.4em; color: #5f5f5f;">Juegos</div>
     </ng-template>
 </p-messages>
 <br>
 <p-table [value]="juegos" responsiveLayout="scroll">
-    <ng-template pTemplate="success">
-        <div class="flex align-items-center justify-content-between" >
-            Juegos
-            <!-- <p-button icon="pi pi-refresh"></p-button> -->
+    <ng-template pTemplate="caption" >
+        <div class="flex align-items-center justify-content-end">
+            <p-button icon="pi pi-plus" pTooltip="Agregar Juego" tooltipPosition="bottom" (click)="showMaximizableDialog()"></p-button>
         </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -17,8 +16,8 @@
             <th>Imagen</th>
             <th>Precio</th>
             <th>Plataforma</th>
-            <th>Reviews</th>
             <th>Status</th>
+            <th></th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-juego>
@@ -27,13 +26,71 @@
             <td><img src="{{juego.url}}" [alt]="juego.name" width="100" class="shadow-4" /></td>
             <td>{{juego.precio | currency:'ARS $'}}</td>
             <td>{{juego.plataforma}}</td>
-            <td><p-rating [ngModel]="juego.rating" [readonly]="true" [cancel]="false"></p-rating></td>
             <td><span [class]="'product-badge status-' + juego.status.toLowerCase()">{{juego.status}}</span></td>
+            <td>
+                <button pButton pRipple type="button" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="bottom" class=" p-button-secondary p-button-text" (click)="updateJuego(juego)"></button>
+                <button pButton pRipple type="button" icon="pi pi-times" pTooltip="Eliminar" tooltipPosition="bottom"  class=" p-button-danger p-button-text" (click)="deleteJuego(juego.id)"></button>
+            </td>
         </tr>
     </ng-template>
     <ng-template pTemplate="summary">
         <div class="flex align-items-center justify-content-between">
-            En total hay {{juegos ? juegos.length - 1 : 0 }} juegos en stock.
+            En total hay {{juegos ? juegos.length : 0 }} juegos.
         </div>
     </ng-template>
 </p-table>
+
+<p-dialog header="{{header}}" [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}"
+    [maximizable]="true" [draggable]="false" [resizable]="false">
+    <ng-template pTemplate="content">
+        <form [formGroup]="formProducto">
+            <div class="formgrid grid justify-content-center">
+                <div class="md:col-8">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                        <input type="text" pInputText placeholder="Nombre" formControlName="nombre">
+                    </div>
+                </div>
+                <div class="md:col-3">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-dollar"></i></span>
+                        <p-inputNumber inputId="minmaxfraction" mode="decimal" [minFractionDigits]="2"
+                            [maxFractionDigits]="2" placeholder="Precio" formControlName="precio"></p-inputNumber>
+                    </div>
+                </div>
+                <div class="col-16 md:col-11">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-globe"></i></span>
+                        <input type="text" pInputText placeholder="Url" formControlName="url">
+                    </div>
+                </div>
+                <div class="col-16 md:col-6">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-box"></i></span>
+                        <input type="text" pInputText placeholder="Plataforma" formControlName="plataforma">
+                    </div>
+                </div>
+                <div class="col-16 md:col-5">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-check-square"></i></span>
+                        <input type="text" pInputText placeholder="Status" formControlName="status">
+                    </div>
+                </div>
+                <div class="col-16 md:col-11">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-comment"></i></span>
+                        <textarea placeholder="Descripción" [rows]="5" [cols]="30" pInputTextarea
+                            [autoResize]="autoResize" formControlName="descripcion"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-times" (click)="dialogCancel()" label="Cancelar"
+            styleClass="p-button-danger p-button-text">
+        </p-button>
+        <p-button icon="pi pi-check" (click)="guardarJuego()" label="Guardar" styleClass="p-button-secondary">
+        </p-button>
+    </ng-template>
+</p-dialog>

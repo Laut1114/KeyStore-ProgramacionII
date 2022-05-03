@@ -4,13 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ScrollingModule  } from '@angular/cdk/scrolling';
-import { FormsModule } from '@angular/forms';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //-------- COMPONENTS -----------
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
-import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { JuegosComponent } from './pages/categorias/juegos/juegos.component';
@@ -21,6 +20,7 @@ import { EBooksComponent } from './pages/categorias/e-books/e-books.component';
 import { CarrouselHomeComponent } from './pages/home/components/carrousel-home/carrousel-home.component';
 import { CardHomeComponent } from './pages/home/components/card-home/card-home.component';
 import { OfertasComponent } from './pages/ofertas/ofertas.component';
+import { ProcesoCompraComponent } from './pages/home/components/proceso-compra/proceso-compra.component';
 
 // -------- PRIMENG -----------
 import { MenubarModule } from 'primeng/menubar';
@@ -36,12 +36,17 @@ import { RatingModule } from 'primeng/rating';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ToastModule } from 'primeng/toast';
 import { TimelineModule } from 'primeng/timeline';
+import { DialogModule } from 'primeng/dialog';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { SpeedDialModule } from 'primeng/speeddial';
+import { TooltipModule } from 'primeng/tooltip';
 
 //-------- FIREBASE -----------
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from 'src/environments/environment';
-import { ProcesoCompraComponent } from './pages/home/components/proceso-compra/proceso-compra.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +56,7 @@ import { ProcesoCompraComponent } from './pages/home/components/proceso-compra/p
     HomeComponent,
     CarrouselHomeComponent,
     CardHomeComponent,
+    ProcesoCompraComponent,
     //--------------------------------------
     //COMPONENTES DE CATEGORIAS ------------
     JuegosComponent,
@@ -60,15 +66,15 @@ import { ProcesoCompraComponent } from './pages/home/components/proceso-compra/p
     EBooksComponent,
     //--------------------------------------
     OfertasComponent,
-    SignInComponent,
     FooterComponent,
-    ProcesoCompraComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
+    // PRIME NG
     MenubarModule,
     InputTextModule,
     ButtonModule,
@@ -84,8 +90,15 @@ import { ProcesoCompraComponent } from './pages/home/components/proceso-compra/p
     RatingModule,
     TimelineModule,
     SkeletonModule,
+    DialogModule,
+    InputNumberModule,
+    InputTextareaModule,
+    SpeedDialModule,
+    TooltipModule,
+    // FIREBASE
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

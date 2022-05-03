@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
+import { ProductInterface } from 'src/app/models/product';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +10,14 @@ import { PrimeIcons } from 'primeng/api';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public productosCollection: ProductInterface[] = [];
 
-  ngOnInit() : void {}
+  constructor(private productService: ProductService) { }
+
+  ngOnInit() {
+    // this.productService.getProductos().subscribe((productos) => {
+    //   console.log(productos)
+    //   this.productosCollection = productos
+    // });
+  }
 }
