@@ -2,14 +2,6 @@
 	"data": [
 		{
 			"id": "1000",
-			"nombre": "Fifa 22",
-            "precio": 2100,
-			"categoria": "Sistemas Operativos",
-			"status": "Stock",
-            "url": "https://cdn.cdkeys.com/245x340/media/catalog/product/f/i/fifa-22-pc-game-origin-cover.jpg"
-		},
-		{
-			"id": "1000",
 			"nombre": "Microsoft Windows 10 Home key",
             "precio": 2100,
 			"descripcion": "Product Description",
@@ -52,15 +44,6 @@
 			"categoria": "Juegos",
 			"status": "Stock",
             "url": "https://img.g2a.com/323x433/1x1x0/dark-souls-remastered-steam-key-global/5b06213d5bafe3c52369c012"
-		},
-        {
-			"id": "1005",
-			"nombre": "Playstation Plus CARD 365 Days",
-			"descripcion": "Product Description",
-			"precio": 6900,
-			"categoria": "Suscripciones",
-			"status": "Stock",
-            "url": "https://img.g2a.com/323x452/1x1x0/playstation-plus-card-365-days-psn-united-states/006e79e89e77430db8ff25ff"
 		},
         {
 			"id": "1006",

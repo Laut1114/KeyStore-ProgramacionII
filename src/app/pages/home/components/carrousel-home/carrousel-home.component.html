@@ -1,47 +1,30 @@
-<!-- <div id="carrousel-container">
-    <p-carousel [value]="productos" styleClass="custom-carousel" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="4000">
-        <ng-template let-carousel pTemplate="item">
-            <div class="product-item">
-                <div class="product-item-content">
-                    <div style ="background-image: url( {{carousel.url}});">
-                        <h4 class="p-mb-1" style="font-size: 1.2em; padding-inline: 10px;">{{carousel.nombre}}</h4>
-                        <h5 class="p-mt-0 p-mb-3"
-                            style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size: 1em;">
-                            $
-                            {{carousel.precio}}</h5>
-                         <div class="car-buttons p-mt-5 ">
-                            <p-button type="button" id="button" styleClass="p-button-rounded p-button-secondary"
-                                icon="pi pi-arrow-right">
-                            </p-button>
-                            <p-button type="button" id="button" styleClass="p-button-rounded p-button-warning"
-                                icon="pi pi-star-fill"></p-button>
-                            <p-button type="button" id="button" styleClass="p-button p-button-rounded p-mr-2"
-                                icon="pi pi-shopping-cart"></p-button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </ng-template>
-    </p-carousel>
-</div> -->
-
-<div class="flex flex-row card-container">
+<div class="flex flex-row card-container" style="margin: 60px 0px 120px 0px">
     <!-- Container del Carrousel -->
     <div class="flex align-content-center justify-content-start flex-wrap card-container border-round" id="card1">
-        <p-carousel [value]="productos" [circular]="true" orientation="horizontal" [style]="{'max-width':'419px'}"
-            [numVisible]="1" [numScroll]="1" [autoplayInterval]="5000">
+        <p-carousel [value]="productos" [style]="{'max-width':'720px', 'max-height':'680px'}" [circular]="true"
+            orientation="horizontal" [numVisible]="1" [numScroll]="1" [autoplayInterval]="5000">
             <ng-template let-product pTemplate="item">
                 <div class="product-item">
-                    
+                    <div class="product-item-header">
+                        <img src="{{product.url}}" [alt]="product.nombre" class="product-image" />
+                        <h4 class="mb-1">{{product.nombre}}</h4>
+                        <hr>
+                    </div>
                     <div class="product-item-content">
-                        <img src="{{product.url}}" [style]="{'max-height' : '30%'}" [alt]="product.nombre" class="product-image" />
-                        <div>
-                            <h4 class="mb-1">{{product.nombre}}</h4>
-                            <hr>
+                        <!-- <div>
                             <div class="car-buttons mt-2">
-                                <p class="mb-3">Desde ${{product.precio}}</p>
+                                <p>Desde ${{product.precio}}</p>
                                 <p-button type="button" styleClass="p-button mr-2" icon="pi pi-shopping-cart">
                                 </p-button>
+                            </div>
+                        </div> -->
+                        <div class="flex card-container blue-container overflow-hidden">
+                            <div class="flex-none flex align-items-center justify-content-center font-bold text-white m-2 px-5 py-3 border-round">
+                                <p>Desde ${{product.precio}}</p>
+                            </div>
+                            <div class="flex-grow-1 flex align-items-center justify-content-end font-bold text-white m-2 px-5 py-3 border-round">
+                                <p-button type="button" styleClass="p-button mr-2" icon="pi pi-shopping-cart"></p-button>
+                                <p-button type="button" styleClass="p-button-outlined" [style]="{'color': 'white'}" icon="pi pi-arrow-right"></p-button>
                             </div>
                         </div>
                     </div>
@@ -49,14 +32,13 @@
             </ng-template>
         </p-carousel>
     </div>
-    <!--  -->
     <div class="flex flex-column card-container" id="card2">
         <div class="flex justify-content-center align-items-center flex-wrap card-container" id="col-card1">
             <div class="flex align-items-center justify-content-start font-bold text-white border-round" id="back-card">
                 <Span id="col-card1-text">Juegos</Span>
             </div>
         </div>
-        <div class="flex flex-row card-container" style="height: 35%; width: 100%;">
+        <div class="flex flex-row card-container" style="height: 31.5%; width: 100%;">
             <div class="flex justify-content-center align-items-center flex-wrap card-container" id="col-card2">
                 <div class="flex align-items-center justify-content-start font-bold text-white border-round"
                     id="back-card">
@@ -72,9 +54,6 @@
         </div>
     </div>
 </div>
-
-<br>
-
-<p-divider align="center">
-    <span class="p-tag">Otros Productos</span>
+<p-divider align="center" type="dashed">
+    <b class="p-tag">Otros Productos</b>
 </p-divider>

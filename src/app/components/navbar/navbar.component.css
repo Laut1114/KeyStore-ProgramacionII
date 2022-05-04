@@ -2,7 +2,7 @@
     width: 100px;
     margin-left: 3.5em; 
     background-color: transparent;
-    color: #cfd8dc;
+    color: #007bee;
 }
 
 .user-button-logged {
@@ -18,7 +18,7 @@
 
 #input-buscar {
     background-color: transparent;
-    width: 25em;
+    width: 15em;
     margin-right: .3em;
     border-color: #1e88e5;
     color: #cfd8dc;

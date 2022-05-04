@@ -13,7 +13,7 @@
     bottom: 100%;
     left: 0;
     right: 0;
-    background-color: #CFD8DC;
+    background-color: #5c5c5cc4;
     overflow: hidden;
     width: 100%;
     height: 0;
@@ -27,7 +27,7 @@
 
 .text {
     white-space: pre-wrap;
-    color: rgb(34, 34, 34);
+    color: rgb(226, 226, 226);
     font-size: 20px;
     position: relative;
     overflow: hidden;
@@ -39,13 +39,13 @@
 }
 
 #product-title {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 1em;
     font-weight: 600;
     padding-inline: 10px;
 }
 
 #product-price {
-    color: black;
+    color: rgb(226, 226, 226);
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
