@@ -2,6 +2,14 @@
 	"data": [
 		{
 			"id": "1000",
+			"nombre": "Fifa 22",
+            "precio": 2100,
+			"categoria": "Sistemas Operativos",
+			"status": "Stock",
+            "url": "https://cdn.cdkeys.com/245x340/media/catalog/product/f/i/fifa-22-pc-game-origin-cover.jpg"
+		},
+		{
+			"id": "1000",
 			"nombre": "Microsoft Windows 10 Home key",
             "precio": 2100,
 			"descripcion": "Product Description",

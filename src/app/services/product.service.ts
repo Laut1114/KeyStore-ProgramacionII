@@ -9,15 +9,12 @@ import { map } from 'rxjs/operators';
 })
 export class ProductService {
 
-  //productCollection: AngularFirestoreCollection<ProductInterface>;
   juegoCollection: AngularFirestoreCollection<ProductInterface>;
   softwareCollection: AngularFirestoreCollection<ProductInterface>;
   gifcardCollection: AngularFirestoreCollection<ProductInterface>;
   suscripCollection: AngularFirestoreCollection<ProductInterface>;
 
-
   constructor(private db: AngularFirestore, private http: HttpClient) { 
-    //this.productCollection = this.db.collection<ProductInterface>('Productos');
     this.juegoCollection = this.db.collection<ProductInterface>('Juegos');
     this.softwareCollection = this.db.collection<ProductInterface>('Software');
     this.gifcardCollection = this.db.collection<ProductInterface>('Gift Card');
@@ -25,7 +22,6 @@ export class ProductService {
   }
 
   // BASE DE DATOS FIRESTORE
-
   // JUEGOS ---------------------------------------------------------------------
   getJuegoS() {
     return this.juegoCollection!.snapshotChanges().pipe(

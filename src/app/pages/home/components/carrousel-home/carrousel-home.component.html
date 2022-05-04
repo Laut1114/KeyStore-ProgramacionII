@@ -25,19 +25,49 @@
     </p-carousel>
 </div> -->
 
-<div class="card">
-    <div class="flex flex-row card-container">
-        <!-- Container del Carrousel -->
-        <div class="flex align-content-center justify-content-start flex-wrap card-container border-round m-2" id="card1">
-            <div class="flex align-items-center justify-content-center w-4rem h-4rem bg-green-500 font-bold text-white border-round m-2">1</div>
-        </div>
-        <!--  -->
-        <div class="flex flex-column card-container">
-            <div class="flex justify-content-end flex-wrap card-container green-container">
-                <div class="flex align-items-center justify-content-center w-4rem h-4rem bg-green-500 font-bold text-white border-round m-2">1</div>
+<div class="flex flex-row card-container">
+    <!-- Container del Carrousel -->
+    <div class="flex align-content-center justify-content-start flex-wrap card-container border-round" id="card1">
+        <p-carousel [value]="productos" [circular]="true" orientation="horizontal" [style]="{'max-width':'419px'}"
+            [numVisible]="1" [numScroll]="1" [autoplayInterval]="5000">
+            <ng-template let-product pTemplate="item">
+                <div class="product-item">
+                    
+                    <div class="product-item-content">
+                        <img src="{{product.url}}" [style]="{'max-height' : '30%'}" [alt]="product.nombre" class="product-image" />
+                        <div>
+                            <h4 class="mb-1">{{product.nombre}}</h4>
+                            <hr>
+                            <div class="car-buttons mt-2">
+                                <p class="mb-3">Desde ${{product.precio}}</p>
+                                <p-button type="button" styleClass="p-button mr-2" icon="pi pi-shopping-cart">
+                                </p-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+    </div>
+    <!--  -->
+    <div class="flex flex-column card-container" id="card2">
+        <div class="flex justify-content-center align-items-center flex-wrap card-container" id="col-card1">
+            <div class="flex align-items-center justify-content-start font-bold text-white border-round" id="back-card">
+                <Span id="col-card1-text">Juegos</Span>
             </div>
-            <div class="flex justify-content-end flex-wrap card-container green-container">
-                <div class="flex align-items-center justify-content-center w-4rem h-4rem bg-green-500 font-bold text-white border-round m-2">1</div>
+        </div>
+        <div class="flex flex-row card-container" style="height: 35%; width: 100%;">
+            <div class="flex justify-content-center align-items-center flex-wrap card-container" id="col-card2">
+                <div class="flex align-items-center justify-content-start font-bold text-white border-round"
+                    id="back-card">
+                    <span id="col-card1-text">Software</span>
+                </div>
+            </div>
+            <div class="flex justify-content-center align-items-center flex-wrap card-container" id="col-card3">
+                <div class="flex align-items-center justify-content-start font-bold text-white border-round"
+                    id="back-card">
+                    <span id="col-card1-text">e-books</span>
+                </div>
             </div>
         </div>
     </div>

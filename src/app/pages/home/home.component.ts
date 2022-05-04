@@ -10,14 +10,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class HomeComponent implements OnInit {
 
-  public productosCollection: ProductInterface[] = [];
+  constructor() { }
 
-  constructor(private productService: ProductService) { }
-
-  ngOnInit() {
-    // this.productService.getProductos().subscribe((productos) => {
-    //   console.log(productos)
-    //   this.productosCollection = productos
-    // });
-  }
+  ngOnInit() {}
 }
