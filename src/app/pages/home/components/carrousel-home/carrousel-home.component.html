@@ -1,8 +1,8 @@
-<div class="flex flex-row card-container" style="margin: 60px 0px 120px 0px">
+<div class="flex flex-wrap md:flex-wrap card-container justify-content-center">
     <!-- Container del Carrousel -->
-    <div class="flex align-content-center justify-content-start flex-wrap card-container border-round" id="card1">
-        <p-carousel [value]="productos" [style]="{'max-width':'720px', 'max-height':'680px'}" [circular]="true"
-            orientation="horizontal" [numVisible]="1" [numScroll]="1" [autoplayInterval]="5000">
+    <div class="flex flex-column lg:flex-column card-container border-round" id="card1">
+        <p-carousel [value]="productos" [circular]="true" orientation="horizontal" [numVisible]="1" [numScroll]="1"
+            [autoplayInterval]="5000">
             <ng-template let-product pTemplate="item">
                 <div class="product-item">
                     <div class="product-item-header">
@@ -11,20 +11,15 @@
                         <hr>
                     </div>
                     <div class="product-item-content">
-                        <!-- <div>
-                            <div class="car-buttons mt-2">
-                                <p>Desde ${{product.precio}}</p>
-                                <p-button type="button" styleClass="p-button mr-2" icon="pi pi-shopping-cart">
-                                </p-button>
+                        <div class="flex card-container overflow-hidden">
+                            <div
+                                class="flex-none flex align-items-center justify-content-center font-bold text-white m-2 px-3 py-3 border-round">
+                                <p style="color:rgb(78, 78, 78);">Desde ${{product.precio}} ARS</p>
                             </div>
-                        </div> -->
-                        <div class="flex card-container blue-container overflow-hidden">
-                            <div class="flex-none flex align-items-center justify-content-center font-bold text-white m-2 px-5 py-3 border-round">
-                                <p>Desde ${{product.precio}}</p>
-                            </div>
-                            <div class="flex-grow-1 flex align-items-center justify-content-end font-bold text-white m-2 px-5 py-3 border-round">
+                            <div
+                                class="flex-grow-1 flex align-items-center justify-content-end font-bold text-white m-2 px-3 py-3 border-round">
                                 <p-button type="button" styleClass="p-button mr-2" icon="pi pi-shopping-cart"></p-button>
-                                <p-button type="button" styleClass="p-button-outlined" [style]="{'color': 'white'}" icon="pi pi-arrow-right"></p-button>
+                                <p-button type="button" styleClass="p-button-outlined"[style]="{'color': 'rgb(78, 78, 78)'}" icon="pi pi-arrow-right"></p-button>
                             </div>
                         </div>
                     </div>
@@ -32,28 +27,23 @@
             </ng-template>
         </p-carousel>
     </div>
-    <div class="flex flex-column card-container" id="card2">
-        <div class="flex justify-content-center align-items-center flex-wrap card-container" id="col-card1">
-            <div class="flex align-items-center justify-content-start font-bold text-white border-round" id="back-card">
-                <Span id="col-card1-text">Juegos</Span>
+    <div class="flex flex-column lg:flex-column card-container" id="card2">
+        <a routerLink="/juegos" id="col-card1">
+            <div class="flex justify-content-start align-items-center flex-wrap card-container" id="back-card">
+                <span id="col-card1-text">Juegos</span>
             </div>
-        </div>
+        </a>
         <div class="flex flex-row card-container" style="height: 31.5%; width: 100%;">
-            <div class="flex justify-content-center align-items-center flex-wrap card-container" id="col-card2">
-                <div class="flex align-items-center justify-content-start font-bold text-white border-round"
-                    id="back-card">
+            <a routerLink="/software" id="col-card2">
+                <div class="flex justify-content-start align-items-center flex-wrap card-container" id="back-card">
                     <span id="col-card1-text">Software</span>
                 </div>
-            </div>
-            <div class="flex justify-content-center align-items-center flex-wrap card-container" id="col-card3">
-                <div class="flex align-items-center justify-content-start font-bold text-white border-round"
-                    id="back-card">
+            </a>
+            <a routerLink="/e-books" id="col-card3">
+                <div class="flex justify-content-start align-items-center flex-wrap card-container" id="back-card">
                     <span id="col-card1-text">e-books</span>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </div>
-<p-divider align="center" type="dashed">
-    <b class="p-tag">Otros Productos</b>
-</p-divider>

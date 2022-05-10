@@ -1,11 +1,12 @@
 #card1 {
-    width: 40%;
-    margin-right: 2%;
+    max-width: 40%;
+    max-height: 680px;
 }
 
 #card2 {
-    width: 58%;
-    padding-right: 1em;
+    min-width: 58%;
+    max-height: 680px;
+    padding-left: 1em;
 }
 
 .product-item-header {
@@ -15,13 +16,13 @@
 .product-item-content {
     border: 1px solid var(--surface-d);
     border-radius: 3px;
-    text-align: center;
     background-color: rgba(104, 104, 104, 0.288);
 }
 
 .product-image {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     background-color: transparent;
+    max-width: 100%;
 }
 
 #col-card1 {
@@ -31,6 +32,7 @@
     background-position: center center;
     background-size: cover;
     margin-bottom: 1%;
+    text-decoration: none;
 }
 
 #col-card2 {
@@ -40,6 +42,7 @@
     background-position: top center;
     background-size: cover;
     margin-right: 1%;
+    text-decoration: none;
 }
 
 #col-card3 {
@@ -48,6 +51,7 @@
     background-image: url('https://fanatical.imgix.net/product/original/eceaa689-318d-4eb9-bf5a-e410c90702a0.jpeg?auto=compress,format&w=740&fit=crop&h=416');
     background-position: center center;
     background-size: cover;
+    text-decoration: none;
 }
 
 #back-card {
@@ -62,11 +66,14 @@
     font-family: Arial, Helvetica, sans-serif;
     font-style: italic;
     font-weight: bold;
+    color: aliceblue;
+    text-align: start;
+    
 }
 
 .p-tag {
     background-color: transparent;
-    font-size: 20px;
+    font-size: 25px;
     color: rgb(128, 128, 128);
     margin: 120px;
 }

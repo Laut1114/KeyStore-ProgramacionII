@@ -13,9 +13,10 @@ export class CarrouselHomeComponent implements OnInit {
 
   constructor(private productService: ProductService) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.productService.getProducts().then(products => {
       this.productos = products;
     });
+
   }
 } 
