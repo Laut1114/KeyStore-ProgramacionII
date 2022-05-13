@@ -5,9 +5,10 @@
 </p-messages>
 <br>
 <p-table [value]="juegos" responsiveLayout="scroll">
-    <ng-template pTemplate="caption" >
+    <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-end">
-            <p-button icon="pi pi-plus" pTooltip="Agregar Juego" tooltipPosition="bottom" (click)="showMaximizableDialog()"></p-button>
+            <p-button icon="pi pi-plus" pTooltip="Agregar Juego" tooltipPosition="bottom"
+                (click)="showMaximizableDialog()"></p-button>
         </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -28,8 +29,10 @@
             <td>{{juego.plataforma}}</td>
             <td><span [class]="'product-badge status-' + juego.status.toLowerCase()">{{juego.status}}</span></td>
             <td>
-                <button pButton pRipple type="button" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="bottom" class=" p-button-secondary p-button-text" (click)="updateJuego(juego)"></button>
-                <button pButton pRipple type="button" icon="pi pi-times" pTooltip="Eliminar" tooltipPosition="bottom"  class=" p-button-danger p-button-text" (click)="deleteJuego(juego.id)"></button>
+                <button pButton pRipple type="button" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="bottom"
+                    class=" p-button-secondary p-button-text" (click)="updateJuego(juego)"></button>
+                <button pButton pRipple type="button" icon="pi pi-times" pTooltip="Eliminar" tooltipPosition="bottom"
+                    class=" p-button-danger p-button-text" (click)="deleteJuego(juego.id)"></button>
             </td>
         </tr>
     </ng-template>
@@ -59,10 +62,11 @@
                     </div>
                 </div>
                 <div class="col-16 md:col-11">
-                    <div class="p-inputgroup">
-                        <span class="p-inputgroup-addon"><i class="pi pi-globe"></i></span>
-                        <input type="text" pInputText placeholder="Url" formControlName="url">
-                    </div>
+                    <span class="p-inputgroup-addon"><i class="pi pi-globe"> Subir Imagen</i></span>
+                    <!-- <p-fileUpload name="demo[]" accept="image/*" [maxFileSize]="1000000" [auto]="true"
+                        chooseLabel="Seleccionar Archivo" [showUploadButton]="false" [showCancelButton]="false" (uploadHandler)='obtFile($event)'>
+                    </p-fileUpload> -->
+                    <p-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="subir"></p-fileUpload>
                 </div>
                 <div class="col-16 md:col-6">
                     <div class="p-inputgroup">

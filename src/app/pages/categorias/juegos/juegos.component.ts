@@ -1,25 +1,33 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
+import { finalize } from 'rxjs';
 import { ProductInterface } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-juegos',
   templateUrl: './juegos.component.html',
-  styleUrls: ['./juegos.component.css']
+  styleUrls: ['./juegos.component.css'],
+  providers: [MessageService],
 })
 export class JuegosComponent implements OnInit {
   juegos: ProductInterface[] = [];
   formProducto: FormGroup;
 
-  public header: string = 'Agregar un nuevo juego';
+  header: string = 'Agregar un nuevo juego';
   edit: Boolean = false;
-  public itemSelected: ProductInterface
+  itemSelected: ProductInterface;
 
   displayMaximizable: boolean;
-  public autoResize = true
+  autoResize = true;
 
-  constructor(private fb: FormBuilder, private productService: ProductService) {
+  //imagen
+  private uploadedFiles: any;
+  private urlImg: string = '';
+
+  constructor(private fb: FormBuilder, private productService: ProductService, private messageService: MessageService) {
     this.formProducto = this.fb.group({
       nombre: ['', Validators.required],
       precio: ['', Validators.required],
@@ -27,18 +35,22 @@ export class JuegosComponent implements OnInit {
       plataforma: ['', Validators.required],
       status: ['En Stock'],
       descripcion: [''],
-    })
+    });
   }
 
   ngOnInit() {
     this.productService.getJuegoS().subscribe((productos) => {
-      this.juegos = productos
+      this.juegos = productos;
     });
   }
 
   showMaximizableDialog() {
     this.displayMaximizable = true;
   }
+
+  onBasicUploadAuto(event: any) {
+    this.messageService.add({severity: 'info', summary: 'Success', detail: 'File Uploaded with Auto Mode'});
+}
 
   guardarJuego() {
     if (this.edit == false) {
@@ -69,7 +81,7 @@ export class JuegosComponent implements OnInit {
   }
 
   updateJuego(juegoSelected: ProductInterface) {
-    this.edit = true
+    this.edit = true;
     this.itemSelected = juegoSelected;
     this.header = 'Editar Juego';
     this.formProducto.setValue({
@@ -80,12 +92,12 @@ export class JuegosComponent implements OnInit {
       status: juegoSelected.status,
       descripcion: juegoSelected.descripcion
     });
-    this.showMaximizableDialog()
+    this.showMaximizableDialog();
   }
 
   deleteJuego(id: string) {
     this.productService.deleteJuegoS(id).then(() => {
-      alert('Juego eliminado')
+      alert('Juego eliminado');
     });
   }
 }
