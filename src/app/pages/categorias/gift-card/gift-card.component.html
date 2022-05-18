@@ -30,13 +30,13 @@
             <td><button pButton pRipple type="button" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="bottom"
                     class=" p-button-secondary p-button-text" (click)="updateGiftCard(giftCard)"></button>
                 <button pButton pRipple type="button" icon="pi pi-times" pTooltip="Eliminar" tooltipPosition="bottom"
-                    class=" p-button-danger p-button-text" (click)="deleteGiftcard(giftCard.id)"></button>
+                    class=" p-button-danger p-button-text" (click)="deleteGiftcard(giftCard.id, giftCard.nombre)"></button>
             </td>
         </tr>
     </ng-template>
     <ng-template pTemplate="summary">
         <div class="flex align-items-center justify-content-between">
-            En total hay {{giftCard ? giftCard.length - 1 : 0 }} gift cards en stock.
+            En total hay {{giftCard ? giftCard.length - 1 : 0 }} gift cards.
         </div>
     </ng-template>
 </p-table>
@@ -80,10 +80,18 @@
                     </div>
                 </div>
                 <div class="col-16 md:col-11">
-                    <div class="p-inputgroup">
-                        <span class="p-inputgroup-addon"><i class="pi pi-globe"></i></span>
-                        <input type="text" pInputText placeholder="Url" formControlName="url">
-                    </div>
+                    <span class="p-inputgroup-addon"><i class="pi pi-upload" style="padding-right: 10px;"></i>Subir Imagen</span>
+                    <p-fileUpload accept="image/*" chooseLabel="Seleccionar Archivo"
+                        [showUploadButton]="false" [showCancelButton]="false" [customUpload]="true" ngDefaultControl formControlName="url" (onSelect)="obtenerFile($event)">
+                        <ng-template *ngIf="edit == true" pTemplate="content">
+                            <div class="p-inputgroup" *ngIf="file == undefined">
+                                <span class="p-inputgroup-addon"><i class="pi pi-file"></i></span>
+                                <input type="text" pInputText formControlName="urlname" readonly>
+                                <span class="p-inputgroup-addon"><i class="pi pi-globe"></i></span>
+                                <input type="text" pInputText formControlName="url" readonly>
+                            </div>
+                        </ng-template>
+                    </p-fileUpload>
                 </div>
                 <div class="col-16 md:col-6">
                     <div class="p-inputgroup">
@@ -108,9 +116,11 @@
         </form>
     </ng-template>
     <ng-template pTemplate="footer">
-        <p-button icon="pi pi-times" label="Cancelar" (click)="dialogCancel()" styleClass="p-button-danger p-button-text">
+        <p-button icon="pi pi-times" label="Cerrar" (click)="dialogCancel()" styleClass="p-button-danger p-button-text">
         </p-button>
         <p-button icon="pi pi-check" label="Guardar" (click)="guardarGiftCard()" styleClass="p-button-secondary">
         </p-button>
     </ng-template>
 </p-dialog>
+
+<p-toast position="bottom-center"></p-toast>

@@ -4,8 +4,8 @@ export interface ProductInterface {
     precio: number;
     plataforma: string,
     descripcion: string;
-    rating: number;
     categoria: string;
     status: string;
     url: string;
+    urlname:string;
 }
