@@ -1,12 +1,20 @@
-<p-menubar [model]="items" [style]="{'background-color' : 'transparent', 'margin-inline' : '40px'}">
+<p-menubar [model]="items" [style]="{'background-color' : 'transparent', 'margin-inline' : '25px'}">
     <ng-template pTemplate="start">
         <img src="assets/images/logonavbar.png" height="40" class="mr-2">
     </ng-template>
-    <div>
-        <input type="text" pInputText placeholder="Buscar" id="input-buscar">
-        <button type="button" class="p-button-secondary" pButton icon="pi pi-search"></button>
-        <button type="button" pButton icon="pi pi-shopping-cart" id="shop-cart-button"></button>
-        <button [ngClass]="userloged ? 'user-button-logged' : 'user-button'" type="button" label="{{textLog}}" pButton icon="{{iconLog}}" (click)="userlog()" ></button>
+    <div class="flex card-container overflow-hidden">
+        <div class="flex flex-wrap lg:flex-wrap card-container" style="max-width: 800px">
+            <div class="flex align-items-center justify-content-center font-bold text-white m-2 border-round">
+                <input type="text" pInputText placeholder="Buscar" id="input-buscar">
+                <button type="button" class="p-button-secondary" pButton icon="pi pi-search"></button>
+            </div>
+            <div class="flex align-items-center justify-content-center font-bold text-white m-2 border-round">
+                <button type="button" pButton icon="pi pi-shopping-cart" id="shop-cart-button"></button>
+            </div>
+            <div class="flex align-items-center justify-content-center font-bold text-white m-2 border-round">
+                <button [ngClass]="userLog ? 'user-button-logged' : 'user-button'" type="button" label="{{textLog}}" pButton icon="{{iconLog}}" (click)="userlog()"[loading]="isLoadingButton"></button>
+            </div>
+        </div>
     </div>
 </p-menubar>
 <p-toast position="bottom-center" key="bc"></p-toast>

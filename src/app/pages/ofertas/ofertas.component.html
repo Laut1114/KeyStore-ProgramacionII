@@ -1,6 +1,6 @@
-<p-messages severity="custom" [style]="{'background-color': '#D1C4E9', 'border-radius' : '4px'}">
+<p-messages severity="custom" [style]="{'background-color': '#ffffff', 'border-radius' : '4px', 'box-shadow' : '0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.16)'}">
     <ng-template pTemplate>
-        <div class="ml-6" style="height: 1.2em; font-size: 1.4em; color: #673AB7;">Ofertas</div>
+        <div class="ml-6" style="height: 1.2em; font-size: 1.4em; color: #009EFF; font-weight: bolder;">Ofertas</div>
     </ng-template>
 </p-messages>
 <br>
@@ -21,7 +21,7 @@
             <td><img src="{{ofertas.url}}" [alt]="ofertas.name" width="100" class="shadow-4" /></td>
             <td>{{ofertas.categoria}}</td>
             <td style="text-decoration: line-through;">{{ofertas.precio | currency:'ARS $'}}</td>
-            <td>(-{{ofertas.descuento}}) {{ofertas.precioFin | currency:'ARS $'}}</td>
+            <td>🔥 ({{ofertas.descuento}}) {{ofertas.precioFin | currency:' ARS $'}}</td>
             <td>
                 <p-button label="Comprar" icon="pi pi-shopping-bag" styleClass="p-button-outlined"></p-button>
                 <button type="button" pButton label="" icon="pi pi-shopping-cart" style="width: 48px; margin-left: 15px;"></button>

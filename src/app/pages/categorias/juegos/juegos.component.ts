@@ -1,24 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ProductInterface } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-juegos',
   templateUrl: './juegos.component.html',
   styleUrls: ['./juegos.component.css'],
-  providers: [MessageService],
+  providers: [ConfirmationService, MessageService,],
 })
 export class JuegosComponent implements OnInit {
+
+  logged: boolean = false;
 
   public juegos: ProductInterface[] = [];
   public formProducto: FormGroup;
 
   public header: string = 'Agregar un nuevo juego';
-  public edit: Boolean = false;
+  public edit: boolean = false;
   private itemSelected: ProductInterface;
 
+  public loading: boolean;
   public displayMaximizable: boolean;
   public autoResize = true;
 
@@ -26,7 +30,7 @@ export class JuegosComponent implements OnInit {
   private imagePath: string;
   private categoria: string = "juegos"
 
-  constructor(private fb: FormBuilder, private productService: ProductService, private messageService: MessageService) {
+  constructor(private fb: FormBuilder, private productService: ProductService, private messageService: MessageService, private authService: AuthService) {
     this.formProducto = this.fb.group({
       nombre: ['', Validators.required],
       precio: ['', Validators.required],
@@ -39,9 +43,16 @@ export class JuegosComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productService.getJuegoS().subscribe((productos) => {
-      this.juegos = productos;
-    });
+    if (this.authService.userLogged) {
+      this.logged = true;
+    }
+    this.loading = true;
+    setTimeout(() => {
+      this.productService.getJuegoS().subscribe((productos) => {
+        this.juegos = productos;
+        this.loading = false;
+      });
+    }, 1500);
   }
 
   showMaximizableDialog() {
@@ -55,13 +66,16 @@ export class JuegosComponent implements OnInit {
 
   guardarJuego() {
     if (!this.formProducto.invalid) {
+      // SI NO SE VA A EDITAR UN PRODUCTO -----------------------------
       if (this.edit == false) {
+        // SE AGREGAR EL PRODUCTO Y SE RESETEAN VALORES
         this.productService.subirImagen(this.file!, this.formProducto.value, this.categoria, this.imagePath);
         this.displayMaximizable = false;
         this.messageService.add({ severity: 'success', summary: 'Listo', detail: 'Juego agregado correctamente' });
         this.formProducto.reset();
         this.file = undefined;
-      } else {
+      } // SI SE VA A EDITAR UN PRODUCTO -----------------------------
+      else {
         if (this.file == undefined) {
           //SI NO SE CAMBIA LA IMAGEN DEL PRODUCTO HACE ESTO ---------
           this.productService.updateJuegoS(this.itemSelected.id, this.formProducto.value);
@@ -86,7 +100,7 @@ export class JuegosComponent implements OnInit {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Hay campos incompletos, por favor ingrese todos los datos', life: 3500 });
     }
   }
-  
+
   dialogCancel() {
     this.edit = false;
     this.formProducto.reset();
@@ -96,7 +110,6 @@ export class JuegosComponent implements OnInit {
   }
 
   updateJuego(juegoSelected: ProductInterface) {
-    console.log(this.file)
     this.edit = true;
     this.itemSelected = juegoSelected;
     this.header = 'Editar Juego';
@@ -112,9 +125,16 @@ export class JuegosComponent implements OnInit {
     this.productService.deleteJuegoS(id).then(() => {
       this.messageService.add({ severity: 'warn', summary: 'Atención!', detail: `Se ha eliminado un juego (${nombre})`, life: 4500 });
     });
+
+    // this.confirmationService.confirm({
+    //   message: '¿Esta seguro que quiere eliminar ' + nombre + '?',
+    //   header: 'Eliminar',
+    //   icon: 'pi pi-exclamation-triangle',
+    //   accept: () => {
+    //     this.productService.deleteJuegoS(id).then(() => {
+    //       this.messageService.add({ severity: 'warn', summary: 'Atención!', detail: `Se ha eliminado un juego (${nombre})`, life: 4500 });
+    //     });
+    //   }
+    // });
   }
-
-  // resetForm(){
-
-  // }
 }

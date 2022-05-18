@@ -1,18 +1,15 @@
 .user-button {
     width: 100px;
-    margin-left: 3.5em; 
     background-color: transparent;
     color: #007bee;
 }
 
 .user-button-logged {
     width: 100px;
-    margin-left: 3.5em;
 }
 
 #shop-cart-button {
     width: 48px; 
-    margin-left: 1.5em;
     color: #cfd8dc; 
 }
 

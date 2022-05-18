@@ -1,13 +1,19 @@
-<p-messages severity="custom" [style]="{'background-color': '#e2e2e2', 'border-radius' : '4px'}">
+<p-messages severity="custom" [style]="{'background-color': '#ffffff', 'border-radius' : '4px', 'box-shadow' : '0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.16)'}">
     <ng-template pTemplate>
-        <div class="ml-6" style="height: 1.2em; font-size: 1.4em; color: #5f5f5f;">Software</div>
+        <div class="ml-6" style="height: 1.2em; font-size: 1.4em; color: #009EFF; font-weight: bolder;">Software</div>
     </ng-template>
 </p-messages>
 <br>
-<p-table [value]="software" responsiveLayout="scroll">
-    <ng-template pTemplate="caption" >
-        <div class="flex align-items-center justify-content-end">
-            <p-button icon="pi pi-plus" pTooltip="Agregar Juego" tooltipPosition="bottom" (click)="showMaximizableDialog()"></p-button>
+<p-table [value]="software" responsiveLayout="scroll" [lazy]="true" [loading]="loading">
+    <ng-template pTemplate="caption" *ngIf="logged == true">
+        <div class="flex card-container">
+            <div class="flex-grow-1 flex align-items-center justify-content-start font-bold text-gray-900 p-1 border-round">
+                <p>Editar Productos</p>
+            </div>
+            <div class="flex-shrink-1 lg:flex-shrink-0 flex align-items-center justify-content-center font-bold text-gray-900 border-round"></div>
+            <div class="flex-grow-1 flex align-items-center justify-content-end font-bold text-gray-900 p-1 border-round">
+                <p-button icon="pi pi-plus" pTooltip="Agregar Juego" tooltipPosition="bottom" (click)="showMaximizableDialog()"></p-button>
+            </div>
         </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -27,10 +33,19 @@
             <td>{{software.precio | currency:'ARS $'}}</td>
             <td>{{software.plataforma}}</td>
             <td><span>{{software.status}}</span></td>
-            <td>
+            <td *ngIf="logged == true; else user">
                 <button pButton pRipple type="button" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="bottom" class=" p-button-secondary p-button-text" (click)="updateSoftware(software)" ></button>
                 <button pButton pRipple type="button" icon="pi pi-times" pTooltip="Eliminar" tooltipPosition="bottom"  class=" p-button-danger p-button-text" (click)="deleteSoftware(software.id, software.nombre)"></button>
             </td>
+            <ng-template #user>
+                <td>
+                    <button pButton pRipple type="button" icon="pi pi-shopping-cart" pTooltip="Agregar al Carrito" tooltipPosition="bottom"
+                    class="p-button-outlined"></button>
+                    <br>
+                    <button pButton pRipple type="button" icon="pi pi-shopping-bag" pTooltip="Comprar" tooltipPosition="bottom"
+                    class=" p-button-secondary p-button-text"></button>
+                </td>
+            </ng-template>
         </tr>
     </ng-template>
     <ng-template pTemplate="summary">

@@ -2,34 +2,40 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
 import { MessageService } from 'primeng/api';
-import { style } from '@angular/animations';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
-  providers: [ MessageService ]
+  providers: [MessageService]
 })
 export class NavbarComponent implements OnInit {
 
   items!: MenuItem[];
 
-  textLog: String = "Login";
-  iconLog: String = "pi pi-sign-in";
+  textLog: String;
+  iconLog: String;
 
-  usuario = {
-    email: "",
-    password: ""
-  };
+  userLog: boolean;
 
-  userloged: boolean = false;
+  isLoadingButton: boolean = false;
 
-  constructor(private authService: AuthService, private messageService: MessageService) { }
+  constructor(private authService: AuthService, private messageService: MessageService) {
+    this.userLog = authService.userLogged;
+  }
 
   ngOnInit() {
+    if (this.userLog == false) {
+      this.textLog = "Login";
+      this.iconLog = "pi pi-sign-in";
+    }
+    else {
+      this.iconLog = "pi pi-user";
+    }
+
     this.items = [
       // INICIO
-      { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: '/'},
+      { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: '/' },
 
       // CATEGORIAS
       {
@@ -93,31 +99,30 @@ export class NavbarComponent implements OnInit {
   }
 
   logoutMsg() {
-    this.messageService.add({ key: 'bc', severity: 'warm', summary: 'Adios', detail: 'Se ha cerrado sesión' });
+    this.messageService.add({ key: 'bc', severity: 'warn', summary: 'Adios', detail: 'Se ha cerrado sesión' });
   }
 
   //LOGIN CON GOOGLE -----------------
   ingresarGoogle() {
-    const { email, password } = this.usuario;
-    this.authService.loginGoogle(email, password).then(() => {
+    this.isLoadingButton = true;
+    this.authService.loginGoogle().then(() => {
       this.loginMsg();
-      this.userloged = true;
-      this.textLog = "Logout";
-      this.iconLog = "pi pi-sign-out";
+      this.userLog = true;
+      this.isLoadingButton = false;
+      location.reload()
     });
   }
 
   cerrarSesion() {
     this.authService.logout().then(() => {
       this.logoutMsg();
-      this.userloged = false;
-      this.textLog = "Login";
-      this.iconLog = "pi pi-sign-in";
+      this.userLog = false;
+      location.reload()
     });
   }
 
   userlog() {
-    if (this.userloged == false) {
+    if (this.userLog == false) {
       this.ingresarGoogle();
     }
     else {

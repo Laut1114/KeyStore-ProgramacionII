@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ProductInterface } from 'src/app/models/product';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -12,13 +13,16 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class SuscripcionesComponent implements OnInit {
 
+  logged: boolean = false;
+
   public suscrip: ProductInterface[];
   public formProducto: FormGroup;
 
   public header: string = 'Agregar un nuevo producto';
   public edit: Boolean = false;
-  private itemSelected: string;
+  private itemSelected: ProductInterface;
 
+  public loading: boolean;
   public displayMaximizable: boolean;
   public autoResize = true
 
@@ -26,7 +30,7 @@ export class SuscripcionesComponent implements OnInit {
   private imagePath: string;
   private categoria: string = "suscrip";
 
-  constructor(private fb: FormBuilder, private productService: ProductService, private messageService: MessageService) {
+  constructor(private fb: FormBuilder, private productService: ProductService, private messageService: MessageService, private authService: AuthService) {
     this.formProducto = this.fb.group({
       nombre: ['', Validators.required],
       precio: ['', Validators.required],
@@ -39,9 +43,16 @@ export class SuscripcionesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productService.getSuscripcioneS().subscribe((producto) => {
-      this.suscrip = producto
-    })
+    if (this.authService.userLogged) {
+      this.logged = true;
+    }
+    this.loading = true;
+    setTimeout(() => {
+      this.productService.getSuscripcioneS().subscribe((producto) => {
+        this.suscrip = producto;
+        this.loading = false;
+      })
+    }, 1500);
   }
 
   showMaximizableDialog() {
@@ -55,6 +66,7 @@ export class SuscripcionesComponent implements OnInit {
 
   guardarSuscripcion() {
     if (!this.formProducto.invalid) {
+      // SI NO SE VA A EDITAR UN PRODUCTO -----------------------------
       if (this.edit == false) {
         // SE AGREGAR EL PRODUCTO Y SE RESETEAN VALORES
         this.productService.subirImagen(this.file!, this.formProducto.value, this.categoria, this.imagePath);
@@ -62,11 +74,11 @@ export class SuscripcionesComponent implements OnInit {
         this.messageService.add({ severity: 'success', summary: 'Listo', detail: 'Producto agregado correctamente' });
         this.formProducto.reset();
         this.file = undefined;
-      } else {
-        // SI SE VA A EDITAR UN PRODUCTO ----------------------------
+      } // SI SE VA A EDITAR UN PRODUCTO -----------------------------
+      else {
         if (this.file == undefined) {
           //SI NO SE CAMBIA LA IMAGEN DEL PRODUCTO HACE ESTO ---------
-          this.productService.updateSuscripcioneS(this.itemSelected, this.formProducto.value);
+          this.productService.updateSuscripcioneS(this.itemSelected.id, this.formProducto.value);
           this.displayMaximizable = false;
           this.edit = false;
           this.header = 'Agregar un nuevo producto';
@@ -74,7 +86,7 @@ export class SuscripcionesComponent implements OnInit {
           this.formProducto.reset();
         } else {
           //SI SE CAMBIA LA IMAGEN DEL PRODUCTO HACE ESTO --------
-          this.productService.subirImagen(this.file!, this.formProducto.value, this.categoria, this.imagePath ,this.itemSelected);
+          this.productService.subirImagen(this.file!, this.formProducto.value, this.categoria, this.imagePath ,this.itemSelected.id);
           this.messageService.add({ severity: 'success', summary: 'Listo', detail: 'Producto actualizado correctamente' });
           this.displayMaximizable = false;
           this.edit = false;
@@ -99,7 +111,7 @@ export class SuscripcionesComponent implements OnInit {
 
   updateSuscripcion(suscripSelected: ProductInterface) {
     this.edit = true
-    this.itemSelected = suscripSelected.id;
+    this.itemSelected = suscripSelected;
     this.header = 'Editar Producto';
     const { nombre, precio, url, urlname, plataforma, descripcion, status } = suscripSelected;
     this.formProducto.setValue({ nombre, precio, url, urlname, plataforma, descripcion, status });

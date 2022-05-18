@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ProductInterface } from 'src/app/models/product';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -12,9 +13,12 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class SoftwareComponent implements OnInit {
 
+  logged: boolean = false;
+
   public software: ProductInterface[];
   public formProducto: FormGroup;
 
+  public loading: boolean;
   public header: string = 'Agregar un nuevo producto';
   public edit: Boolean = false;
   private itemSelected: ProductInterface;
@@ -26,7 +30,7 @@ export class SoftwareComponent implements OnInit {
   private imagePath: string;
   private categoria: string = "software";
 
-  constructor(private fb: FormBuilder, private productService: ProductService, private messageService: MessageService) {
+  constructor(private fb: FormBuilder, private productService: ProductService, private messageService: MessageService,  private authService: AuthService) {
     this.formProducto = this.fb.group({
       nombre: ['', Validators.required],
       precio: ['', Validators.required],
@@ -39,9 +43,17 @@ export class SoftwareComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productService.getSoftwareS().subscribe((productos) => {
-      this.software = productos
-    });
+    if (this.authService.userLogged) {
+      console.log(this.authService.userLogged)
+      this.logged = true;
+    }
+    this.loading = true;
+    setTimeout(() => {
+      this.productService.getSoftwareS().subscribe((productos) => {
+        this.software = productos;
+        this.loading = false;
+      });
+    }, 1500);
   }
 
   showMaximizableDialog() {
@@ -55,13 +67,16 @@ export class SoftwareComponent implements OnInit {
 
   guardarSoftware() {
     if (!this.formProducto.invalid) {
+      // SI NO SE VA A EDITAR UN PRODUCTO -----------------------------
       if (this.edit == false) {
+        // SE AGREGAR EL PRODUCTO Y SE RESETEAN VALORES
         this.productService.subirImagen(this.file!, this.formProducto.value, this.categoria, this.imagePath);
         this.displayMaximizable = false;
         this.messageService.add({ severity: 'success', summary: 'Listo', detail: 'Producto agregado correctamente' });
         this.formProducto.reset();
         this.file = undefined;
-      } else {
+      } // SI SE VA A EDITAR UN PRODUCTO -----------------------------
+      else {
         if (this.file == undefined) {
           //SI NO SE CAMBIA LA IMAGEN DEL PRODUCTO HACE ESTO ---------
           this.productService.updateSoftwareS(this.itemSelected.id, this.formProducto.value);

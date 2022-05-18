@@ -2,15 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ProductInterface } from 'src/app/models/product';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-gift-card',
   templateUrl: './gift-card.component.html',
   styleUrls: ['./gift-card.component.css'],
-  providers: [ MessageService ],
+  providers: [MessageService],
 })
 export class GiftCardComponent implements OnInit {
+
+  logged: boolean = false;
 
   public giftCard: ProductInterface[];
   public formProducto: FormGroup;
@@ -19,6 +22,7 @@ export class GiftCardComponent implements OnInit {
   public edit: Boolean = false;
   private itemSelected: ProductInterface;
 
+  public loading: boolean;
   public displayMaximizable: boolean;
   public autoResize = true;
 
@@ -26,7 +30,7 @@ export class GiftCardComponent implements OnInit {
   private imagePath: string;
   private categoria = "giftCard";
 
-  constructor(private fb: FormBuilder, private productService: ProductService, private messageService: MessageService) {
+  constructor(private fb: FormBuilder, private productService: ProductService, private messageService: MessageService, private authService: AuthService) {
     this.formProducto = this.fb.group({
       nombre: ['', Validators.required],
       precio: ['', Validators.required],
@@ -39,9 +43,16 @@ export class GiftCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productService.getGiftCardS().subscribe((producto) => {
-      this.giftCard = producto
-    })
+    if (this.authService.userLogged) {
+      this.logged = true;
+    }
+    this.loading = true;
+    setTimeout(() => {
+      this.productService.getGiftCardS().subscribe((producto) => {
+        this.giftCard = producto;
+        this.loading = false;
+      })
+    }, 1500);
   }
 
   showMaximizableDialog() {
@@ -55,6 +66,7 @@ export class GiftCardComponent implements OnInit {
 
   guardarGiftCard() {
     if (!this.formProducto.invalid) {
+      // SI NO SE VA A EDITAR UN PRODUCTO -----------------------------
       if (this.edit == false) {
         // SE AGREGAR EL PRODUCTO Y SE RESETEAN VALORES
         this.productService.subirImagen(this.file!, this.formProducto.value, this.categoria, this.imagePath);
@@ -62,8 +74,8 @@ export class GiftCardComponent implements OnInit {
         this.messageService.add({ severity: 'success', summary: 'Listo', detail: 'Producto agregado correctamente' });
         this.formProducto.reset();
         this.file = undefined;
-      } else {
-        // SI SE VA A EDITAR UN PRODUCTO ----------------------------
+      } // SI SE VA A EDITAR UN PRODUCTO -----------------------------
+      else {
         if (this.file == undefined) {
           //SI NO SE CAMBIA LA IMAGEN DEL PRODUCTO HACE ESTO ---------
           this.productService.updateGiftCardS(this.itemSelected.id, this.formProducto.value);
@@ -111,5 +123,4 @@ export class GiftCardComponent implements OnInit {
       this.messageService.add({ severity: 'warn', summary: 'Atención!', detail: `Se ha eliminado un producto (${nombre})`, life: 4500 });
     });
   }
-
 }
