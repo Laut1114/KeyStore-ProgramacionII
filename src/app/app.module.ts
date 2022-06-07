@@ -43,6 +43,8 @@ import { SpeedDialModule } from 'primeng/speeddial';
 import { TooltipModule } from 'primeng/tooltip';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { SidebarModule } from 'primeng/sidebar';
+import { CheckboxModule } from 'primeng/checkbox';
 
 //-------- FIREBASE -----------
 import { AngularFireModule } from '@angular/fire/compat';
@@ -99,6 +101,8 @@ import { environment } from 'src/environments/environment';
     TooltipModule,
     FileUploadModule,
     ConfirmDialogModule,
+    SidebarModule,
+    CheckboxModule,
     // FIREBASE
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

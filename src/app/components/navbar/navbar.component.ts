@@ -16,9 +16,11 @@ export class NavbarComponent implements OnInit {
   textLog: String;
   iconLog: String;
 
+  userRegister: boolean = true;
   userLog: boolean;
 
   isLoadingButton: boolean = false;
+  visibleSidebar5: boolean;
 
   constructor(private authService: AuthService, private messageService: MessageService) {
     this.userLog = authService.userLogged;
@@ -91,39 +93,76 @@ export class NavbarComponent implements OnInit {
       // OFERTAS
       { label: 'Ofertas', icon: 'pi pi-fw pi-tags', routerLink: 'ofertas' },
     ];
+  }
 
+  showMaximizableDialog() {
+    this.visibleSidebar5 = true;
+    this.userLog = true;
+    this.isLoadingButton = true;
+  }
+
+  registerMsg(name: string) {
+    this.messageService.add({ key: 'bc', severity: 'success', life: 2000, summary: 'Bienvenido ' + name, detail: 'Gracias por registrate 🙂' });
   }
 
   loginMsg() {
-    this.messageService.add({ key: 'bc', severity: 'info', summary: 'Bienvenido', detail: 'Usuario logeado correctamente' });
+    this.messageService.add({ key: 'bc', severity: 'info', life: 2000, summary: 'Bienvenido', detail: 'Usuario logeado correctamente' });
   }
 
   logoutMsg() {
-    this.messageService.add({ key: 'bc', severity: 'warn', summary: 'Adios', detail: 'Se ha cerrado sesión' });
+    this.messageService.add({ key: 'bc', severity: 'warn', life: 2000, summary: 'Adios', detail: 'Se ha cerrado sesión' });
+  }
+
+  //REGISTRO DE NUEVO USUARIO -----------------
+  crearUser(name: string, email: string, password:string) {
+    this.authService.registerUser(email, password).then(() => {
+      this.userLog = true;
+      this.isLoadingButton = false;
+      this.registerMsg(name);
+      setTimeout(() => {
+        location.reload();
+      }, 2200);
+    });
+  }
+
+  //LOGIN CON EMAI/PASSWORD -----------------
+  ingresarUser(email: string, password: string) {
+    this.authService.loginUser(email, password).then(() => {
+      this.userLog = true;
+      this.isLoadingButton = false;
+      this.loginMsg();
+      setTimeout(() => {
+        location.reload();
+      }, 2200);
+    });
   }
 
   //LOGIN CON GOOGLE -----------------
   ingresarGoogle() {
-    this.isLoadingButton = true;
     this.authService.loginGoogle().then(() => {
-      this.loginMsg();
       this.userLog = true;
       this.isLoadingButton = false;
-      location.reload()
+      this.loginMsg();
+      setTimeout(() => {
+        location.reload();
+      }, 2200);
     });
   }
 
   cerrarSesion() {
     this.authService.logout().then(() => {
-      this.logoutMsg();
       this.userLog = false;
-      location.reload()
+      this.logoutMsg();
+      setTimeout(() => {
+        location.reload();
+      }, 2200);
     });
   }
 
-  userlog() {
+  userButton() {
     if (this.userLog == false) {
-      this.ingresarGoogle();
+      this.visibleSidebar5 = true;
+      this.isLoadingButton = true;
     }
     else {
       this.cerrarSesion();

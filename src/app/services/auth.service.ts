@@ -13,7 +13,7 @@ import { User } from 'src/app/models/user';
 export class AuthService {
   userData: any;
 
-  constructor(public authFire: AngularFireAuth, public firestore: AngularFirestore) { 
+  constructor(public authFire: AngularFireAuth, public firestore: AngularFirestore) {
     //GUARDADO DE DATOS DEL USUARIO Y SETEO EN NULL CUANDO CIERA SESION
     this.authFire.authState.subscribe((user) => {
       if (user) {
@@ -28,12 +28,46 @@ export class AuthService {
     });
   }
 
+  //CREAR UN NUEVO USUARIO CON EMAIL Y CONTRASEÑA
+  async registerUser(email: string, password: string) {
+    try {
+      return this.authFire.createUserWithEmailAndPassword(email, password).then((result) => {
+        this.setUserData(result.user);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+  // INICIO DE SESIÓN CON USUARIO Y CONTRASEÑA
+  async loginUser(email: string, password: string) {
+    try {
+      return await this.authFire.signInWithEmailAndPassword(email, password).then((result) => {
+        this.setUserData(result.user);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   //INICIO DE SESIÓN CON GOOGLE PROVIDER
   async loginGoogle() {
     try {
       return await this.authFire.signInWithPopup(new firebase.auth.GoogleAuthProvider())
     } catch (error) {
       return null;
+    }
+  }
+
+  //RECUPERAR CONTRASEÑA
+  async ForgotPassword(passwordResetEmail: string) {
+    try {
+      return await this.authFire.sendPasswordResetEmail(passwordResetEmail).then(() => {
+        alert('Correo de recuperación enviado, por favor verifica tu bandeja de entrada.');
+      });
+    } catch (error) {
+      console.log(error);
     }
   }
 
