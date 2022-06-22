@@ -1,0 +1,52 @@
+<p-messages severity="custom"
+    [style]="{'background-color': '#ffffff', 'border-radius' : '4px', 'box-shadow' : '0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.16)'}">
+    <ng-template pTemplate>
+        <div class="ml-6" style="height: 1.2em; font-size: 1.4em; color: #009EFF; font-weight: bolder;">Carrito de
+            Compras</div>
+    </ng-template>
+</p-messages>
+<br>
+<div class="flex flex-wrap md:flex-wrap card-container" *ngIf="carro.length > 0">
+    <div class="flex flex-column lg:flex-column card-container border-round" id="card1">
+        <p-table  [value]="carro">
+            <ng-template pTemplate="body">
+                <tr *ngFor="let list of carro; index as i">
+                    <td>{{i+1}}</td>
+                    <td><img src="{{list.url}}" [alt]="list.nombre" width="100" class="shadow-4" /></td>
+                    <td>{{list.nombre}}</td>
+                    <td>{{list.precio | currency:'ARS $'}}</td>
+                    <td></td>
+                    <td>Cantidad: {{cantProducto}}</td>
+                    <td>
+                        <button pButton pRipple type="button" icon="pi pi-plus" pTooltip="Agregar"
+                            tooltipPosition="bottom" class="p-button-outlined"></button>
+                        <br>
+                        <button pButton pRipple type="button" icon="pi pi-minus" pTooltip="Quitar"
+                            tooltipPosition="bottom" class=" p-button-secondary p-button-text">
+                        </button>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <button pButton pRipple type="button" icon="pi pi-times" pTooltip="Vaciar Carrito"
+                            tooltipPosition="bottom" class="p-button-danger p-button-outlined" (click)="eliminarProduct(list.id)">
+                        </button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div class="flex flex-column lg:flex-column px-4 card-container" id="card2">
+        <h3>Revision del carro</h3>
+        <p-divider></p-divider>
+        <p>{{carro.length}} productos</p>
+        <p>Envio</p>
+        <input type="" name="envio" id="envio">
+        <h2>Precio total</h2>
+        <p>{{precioTotal}}</p>
+        <p-button>chekout</p-button>
+    </div>
+</div>
+
+<p-toast position="bottom-center"></p-toast>

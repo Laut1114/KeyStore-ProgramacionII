@@ -7,5 +7,6 @@ export interface ProductInterface {
     categoria: string;
     status: string;
     url: string;
-    urlname:string;
+    urlname: string;
+    cantidad: number;
 }

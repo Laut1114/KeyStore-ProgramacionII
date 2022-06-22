@@ -21,6 +21,7 @@ import { CarrouselHomeComponent } from './pages/home/components/carrousel-home/c
 import { CardHomeComponent } from './pages/home/components/card-home/card-home.component';
 import { OfertasComponent } from './pages/ofertas/ofertas.component';
 import { ProcesoCompraComponent } from './pages/home/components/proceso-compra/proceso-compra.component';
+import { CarritoComponent } from './pages/carrito/carrito.component';
 
 // -------- PRIMENG -----------
 import { MenubarModule } from 'primeng/menubar';
@@ -52,6 +53,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from 'src/environments/environment';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +73,7 @@ import { environment } from 'src/environments/environment';
     //--------------------------------------
     OfertasComponent,
     FooterComponent,
+    CarritoComponent,
   ],
   imports: [
     BrowserModule,

@@ -18,8 +18,8 @@
     </ng-template>
     <ng-template pTemplate="header">
         <tr>
-            <th>Nombre</th>
             <th>Imagen</th>
+            <th>Nombre</th>
             <th>Precio</th>
             <th>Plataforma</th>
             <th>Status</th>
@@ -28,8 +28,8 @@
     </ng-template>
     <ng-template pTemplate="body" let-software>
         <tr>
-            <td>{{software.nombre}}</td>
             <td><img src="{{software.url}}" [alt]="software.name" width="100" class="shadow-4" /></td>
+            <td>{{software.nombre}}</td>
             <td>{{software.precio | currency:'ARS $'}}</td>
             <td>{{software.plataforma}}</td>
             <td><span>{{software.status}}</span></td>

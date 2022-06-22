@@ -8,8 +8,7 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./ofertas.component.css']
 })
 export class OfertasComponent implements OnInit {
-
-
+  
   ofertas!: ProductInterface[];
 
   constructor(private productService: ProductService) { }

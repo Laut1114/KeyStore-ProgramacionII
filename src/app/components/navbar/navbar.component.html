@@ -9,7 +9,7 @@
                 <button type="button" class="p-button-secondary" pButton icon="pi pi-search"></button>
             </div>
             <div class="flex align-items-center justify-content-center font-bold text-white m-2 border-round">
-                <button type="button" pButton icon="pi pi-shopping-cart" id="shop-cart-button"></button>
+                <button type="button" pButton icon="pi pi-shopping-cart" id="shop-cart-button" routerLink="carrito"></button>
             </div>
             <div class="flex align-items-center justify-content-center font-bold text-white m-2 border-round">
                 <button [ngClass]="userLog ? 'user-button-logged' : 'user-button'" type="button" label="{{textLog}}"

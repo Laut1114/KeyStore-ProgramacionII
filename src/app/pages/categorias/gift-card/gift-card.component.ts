@@ -17,6 +17,7 @@ export class GiftCardComponent implements OnInit {
 
   public giftCard: ProductInterface[];
   public formProducto: FormGroup;
+  private carritoProduct: Array<any> = [];
 
   public header: string = 'Agregar un nuevo producto';
   public edit: Boolean = false;
@@ -30,7 +31,7 @@ export class GiftCardComponent implements OnInit {
   private imagePath: string;
   private categoria = "giftCard";
 
-  constructor(private fb: FormBuilder, private productService: ProductService, private messageService: MessageService, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private productService: ProductService, private messageService: MessageService, private authService: AuthService,) {
     this.formProducto = this.fb.group({
       nombre: ['', Validators.required],
       precio: ['', Validators.required],
@@ -42,16 +43,26 @@ export class GiftCardComponent implements OnInit {
     })
   }
 
+  getProducts() {
+    this.productService.getGiftCardS().subscribe((producto) => {
+      this.giftCard = producto;
+      this.loading = false;
+    })
+  }
+
+  addCart(productSelected: ProductInterface) {
+    this.productService.carro.emit(productSelected);
+    console.log("en teoria enviada al carrito");
+  }
+
   ngOnInit() {
     if (this.authService.userLogged) {
       this.logged = true;
     }
+    // "carga de tabla"
     this.loading = true;
     setTimeout(() => {
-      this.productService.getGiftCardS().subscribe((producto) => {
-        this.giftCard = producto;
-        this.loading = false;
-      })
+      this.getProducts();
     }, 1500);
   }
 
@@ -61,6 +72,7 @@ export class GiftCardComponent implements OnInit {
 
   obtenerFile(event: any) {
     this.file = event.currentFiles[0];
+    //PATH PARA GUARDARLO EN STORAGE
     this.imagePath = `imagenes/categorias/gift_card/${this.file!.name}`;
   }
 

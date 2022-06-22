@@ -18,8 +18,8 @@
     </ng-template>
     <ng-template pTemplate="header">
         <tr>
-            <th>Nombre</th>
             <th>Imagen</th>
+            <th>Nombre</th>
             <th>Precio</th>
             <th>Plataforma</th>
             <th>Status</th>
@@ -28,8 +28,8 @@
     </ng-template>
     <ng-template pTemplate="body" let-suscrip>
         <tr>
-            <td>{{suscrip.nombre}}</td>
             <td><img src="{{suscrip.url}}" [alt]="suscrip.name" width="100" class="shadow-4" /></td>
+            <td>{{suscrip.nombre}}</td>
             <td>{{suscrip.precio | currency:'ARS $'}}</td>
             <td>{{suscrip.plataforma}}</td>
             <td><span>{{suscrip.status}}</span></td>

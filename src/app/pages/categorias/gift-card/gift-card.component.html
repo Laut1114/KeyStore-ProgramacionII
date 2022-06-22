@@ -18,8 +18,8 @@
     </ng-template>
     <ng-template pTemplate="header">
         <tr>
-            <th>Nombre</th>
             <th>Imagen</th>
+            <th>Nombre</th>
             <th>Precio</th>
             <th>Plataforma</th>
             <th>Status</th>
@@ -28,8 +28,8 @@
     </ng-template>
     <ng-template pTemplate="body" let-giftCard>
         <tr>
-            <td>{{giftCard.nombre}}</td>
             <td><img src="{{giftCard.url}}" [alt]="giftCard.name" width="100" class="shadow-4" /></td>
+            <td>{{giftCard.nombre}}</td>
             <td>{{giftCard.precio | currency:'ARS $'}}</td>
             <td>{{giftCard.plataforma}}</td>
             <td><span>{{giftCard.status}}</span></td>
@@ -42,8 +42,8 @@
             <ng-template #user>
                 <td>
                     <button pButton pRipple type="button" icon="pi pi-shopping-cart" pTooltip="Agregar al Carrito" tooltipPosition="bottom"
-                    class="p-button-outlined"></button>
-                    <br>
+                    class="p-button-outlined" (click)="addCart(giftCard)"></button>
+                    &nbsp;
                     <button pButton pRipple type="button" icon="pi pi-shopping-bag" pTooltip="Comprar" tooltipPosition="bottom"
                     class=" p-button-secondary p-button-text"></button>
                 </td>

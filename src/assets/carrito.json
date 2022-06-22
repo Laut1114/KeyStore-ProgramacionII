@@ -1,0 +1,13 @@
+{
+	"data": [
+		{
+			"id": "1000",
+			"nombre": "Microsoft Windows 10 Home key",
+            "precio": 2100,
+            "descuento": "%60",
+            "precioFin": 840,
+			"categoria": "Sistemas Operativos",
+            "url": "https://img.g2a.com/323x433/1x1x0/microsoft-windows-10-home-microsoft-key-global/5d6f6b2e7e696c549e1fc323"
+		}
+	]
+}
