@@ -6,46 +6,118 @@
     </ng-template>
 </p-messages>
 <br>
-<div class="flex flex-wrap md:flex-wrap card-container" *ngIf="carro.length > 0">
-    <div class="flex flex-column lg:flex-column card-container border-round" id="card1">
-        <p-table  [value]="carro">
-            <ng-template pTemplate="body">
-                <tr *ngFor="let list of carro; index as i">
-                    <td>{{i+1}}</td>
+<div *ngIf="carro.length > 0">
+    <div id="card1">
+        <p-table [value]="carro">
+            <ng-template pTemplate="body" let-list>
+                <tr>
                     <td><img src="{{list.url}}" [alt]="list.nombre" width="100" class="shadow-4" /></td>
                     <td>{{list.nombre}}</td>
                     <td>{{list.precio | currency:'ARS $'}}</td>
                     <td></td>
-                    <td>Cantidad: {{cantProducto}}</td>
+                    <td>Cantidad: {{list.cantidad}}</td>
                     <td>
                         <button pButton pRipple type="button" icon="pi pi-plus" pTooltip="Agregar"
-                            tooltipPosition="bottom" class="p-button-outlined"></button>
+                            tooltipPosition="bottom" class="p-button-outlined" (click)="sum(list.nombre)">
+                        </button>
                         <br>
                         <button pButton pRipple type="button" icon="pi pi-minus" pTooltip="Quitar"
-                            tooltipPosition="bottom" class=" p-button-secondary p-button-text">
+                            tooltipPosition="bottom" class=" p-button-secondary p-button-text"
+                            (click)="res(list.nombre, list.id)">
                         </button>
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                     <td>
                         <button pButton pRipple type="button" icon="pi pi-times" pTooltip="Vaciar Carrito"
-                            tooltipPosition="bottom" class="p-button-danger p-button-outlined" (click)="eliminarProduct(list.id)">
+                            tooltipPosition="bottom" class="p-button-danger p-button-outlined"
+                            (click)="eliminarProduct(list.id)">
                         </button>
                     </td>
                 </tr>
             </ng-template>
         </p-table>
     </div>
-    <div class="flex flex-column lg:flex-column px-4 card-container" id="card2">
-        <h3>Revision del carro</h3>
-        <p-divider></p-divider>
-        <p>{{carro.length}} productos</p>
-        <p>Envio</p>
-        <input type="" name="envio" id="envio">
-        <h2>Precio total</h2>
-        <p>{{precioTotal}}</p>
-        <p-button>chekout</p-button>
+    <div id="card2">
+        <div class="flex flex-wrap lg:flex-wrap justify-content-between ">
+            <p id="Hcarrito">Revisión del carro</p>
+            <p id="Ccarrito">{{carro.length}} productos en el carro</p>
+        </div>
+        <hr>
+        <div class="flex flex-wrap lg:flex-wrap justify-content-between">
+            <div class="flex flex-column lg:flex-column mb-5" id="formCard2">
+                <!-- GRID CON LOS DROPDAOWN DE LOS DATOS DE ENVIO -->
+                <h5>Forma de Envio</h5>
+                <div class="grid">
+                    <div class="col-12 lg:col-12">
+                        <p-dropdown [options]="envios" [(ngModel)]="selectedEnvio" placeholder="Selecione una opción"
+                            optionLabel="opcion" [showClear]="true"></p-dropdown>
+                    </div>
+                </div>
+                <!-- --------------------------------------------------------- -->
+                <!-- GRID CON LOS INPUTS DE LOS DATOS PERSONALES -->
+                <h5>Datos Personales</h5>
+                <div class="grid p-fluid">
+                    <div class="col-12 lg:col-6">
+                        <input type="text" pInputText placeholder="Nombre">
+                    </div>
+                    <div class="col-12 lg:col-6">
+                        <input type="text" pInputText placeholder="Apellido">
+                    </div>
+                    <div class="col-12 lg:col-8">
+                        <input type="text" pInputText placeholder="Dirección">
+                    </div>
+                    <div class="col-12 lg:col-4">
+                        <input type="number" pInputText placeholder="Cod. Postal">
+                    </div>
+                    <div class="col-12 lg:col-7">
+                        <input type="text" pInputText placeholder="Email">
+                    </div>
+                    <div class="col-12 lg:col-5">
+                        <input type="number" pInputText placeholder="N° Telefono">
+                    </div>
+                </div>
+                <!-- --------------------------------------------------------- -->
+                <!-- GRID CON LOS DROPDOWN DEL METODO DE PAGO -->
+                <h5>Metodo de Pago</h5>
+                <div class="grid p-fluid">
+                    <div class="col-12 md:col-8">
+                        <p-dropdown [options]="pagos" [(ngModel)]="selectedPago" placeholder="Selecione una opción"
+                            optionLabel="opcion" [showClear]="true"></p-dropdown>
+                    </div>
+
+                    <div class="col-12 md:col-4">
+                        <p-dropdown [options]="cuotas" [(ngModel)]="selectedCuota" placeholder="Cuotas"
+                            optionLabel="opcion" [showClear]="true"></p-dropdown>
+                    </div>
+                </div>
+                <!-- --------------------------------------------------------- -->
+            </div>
+
+            <div class="flex flex-column lg:flex-column mb-5" id="checkoutCard2">
+                <h2>Precio Total:</h2>
+                <div class="flex flex-wrap lg:flex-wrap justify-content-between pt-3">
+                    <span>Comisión vendedor:</span>
+                    <span>$240</span>
+                </div>
+                <div class="flex flex-wrap lg:flex-wrap justify-content-between py-3">
+                    <span>IVA: </span>
+                    <span>21%</span>
+                </div>
+                <div class="flex flex-wrap lg:flex-wrap justify-content-between pb-3">
+                    <span>Productos:</span>
+                    <span>{{precioTotal | currency:'AR$ '}}</span>
+                </div>
+                <hr style="width: 100%;">
+                <div class="flex flex-wrap lg:flex-wrap justify-content-between py-3 ">
+                    <span style="font-size: 16px; color: #000">Total:</span>
+                    <span style="font-size: 16px; color: #000">{{precioTotal + 240 + precioTotal*(21/100)  | currency:'AR$ '}}</span>
+                </div>
+                &nbsp;
+                <button pButton type="button" icon="pi pi-shopping-bag" label="Comprar" class="p-button-raised"></button>
+                <br>
+                <button pButton pRipple type="button" icon="pi pi-replay" label="Seguir Comprando" class="p-button-secondary p-button-text"></button>
+            </div>
+
+        </div>
     </div>
 </div>
 

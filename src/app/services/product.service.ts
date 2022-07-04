@@ -12,19 +12,19 @@ export class ProductService {
 
   urlImg: string = '';
 
+  carroCollection: AngularFirestoreCollection<ProductInterface>;
   juegoCollection: AngularFirestoreCollection<ProductInterface>;
   softwareCollection: AngularFirestoreCollection<ProductInterface>;
   gifcardCollection: AngularFirestoreCollection<ProductInterface>;
   suscripCollection: AngularFirestoreCollection<ProductInterface>;
 
   constructor(private db: AngularFirestore, private http: HttpClient, private storage: AngularFireStorage) {
+    this.carroCollection = this.db.collection<ProductInterface>('Carro de Compras');
     this.juegoCollection = this.db.collection<ProductInterface>('Juegos');
     this.softwareCollection = this.db.collection<ProductInterface>('Software');
     this.gifcardCollection = this.db.collection<ProductInterface>('Gift Card');
     this.suscripCollection = this.db.collection<ProductInterface>('Suscripciones');
   }
-
-  @Output() carro = new EventEmitter();
 
   // PRODUCTOS DEL CARROUSEL EN EL HOMECOMPONENT ----------------------------------------------------
   async getProducts() {
@@ -43,6 +43,39 @@ export class ProductService {
   }
 
   // ------------------------------------------------------------ BASE DE DATOS FIRESTORE -------------------------------------------------------------
+  // -------------------------------- CARRO DE COMPRAS --------------------------
+  getCarroS() {
+    return this.carroCollection.snapshotChanges().pipe(
+      map(action => action.map(a => a.payload.doc.data() as ProductInterface))
+    );
+  }
+
+  agregarCarroS(product: ProductInterface) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const idFire = this.db.createId();
+        product.id = idFire;
+
+        const result = await this.carroCollection.doc(idFire).set(product);
+        resolve(result)
+
+      } catch (error) {
+        reject(console.log(error))
+      }
+    })
+  }
+
+  deleteCarroS(idFire: string) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const result = this.carroCollection.doc(idFire).delete();
+        resolve(result);
+      } catch (error) {
+        reject(console.log(error))
+      }
+    })
+  }
+   // ---------------------------------------------------------------------------
   // -------------------------------- CATEGORIAS --------------------------------
   // JUEGOS ---------------------------------------------------------------------
   getJuegoS() {

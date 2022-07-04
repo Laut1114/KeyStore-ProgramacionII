@@ -56,6 +56,11 @@ export class SoftwareComponent implements OnInit {
     }, 1500);
   }
 
+  addCart(productSelected: ProductInterface) {
+    this.productService.agregarCarroS(productSelected)
+    this.messageService.add({ severity: 'success', summary: 'Listo', detail: 'Producto agregado al Carrito' });
+  }
+
   showMaximizableDialog() {
     this.displayMaximizable = true;
   }

@@ -1,4 +1,47 @@
+#card1 {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
 #card2 {
-    background-color: rgb(202, 202, 202);
-    width: 34%;
+    padding: 0px 20px 0px 20px;
+    background-color: #1976d2;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 8px;
+}
+
+#Hcarrito {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold ;
+}
+
+#Ccarrito {
+    color: #fff;
+    padding-top: 5px;
+}
+
+#formCard2 {
+    width: 55%;
+    padding-inline: 20px;
+}
+
+#checkoutCard2 {
+    background-color: #ffffff;
+    width: 40%;
+    border-radius: 8px;
+    padding-inline: 20px;
+    
+}
+
+#checkoutCard2 span {
+    color: rgb(187, 187, 187); 
+    font-size: 14px; 
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h5 {
+    color: #fff;
 }

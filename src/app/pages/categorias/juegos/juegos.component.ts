@@ -39,6 +39,7 @@ export class JuegosComponent implements OnInit {
       plataforma: ['', Validators.required],
       status: ['En Stock'],
       descripcion: [''],
+      cantidad: [1]
     });
   }
 
@@ -53,6 +54,11 @@ export class JuegosComponent implements OnInit {
         this.loading = false;
       });
     }, 1500);
+  }
+
+  addCart(productSelected: ProductInterface) {
+    this.productService.agregarCarroS(productSelected)
+    this.messageService.add({ severity: 'success', summary: 'Listo', detail: 'Producto agregado al Carrito' });
   }
 
   showMaximizableDialog() {

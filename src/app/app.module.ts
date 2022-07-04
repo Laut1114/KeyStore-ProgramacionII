@@ -46,6 +46,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { SidebarModule } from 'primeng/sidebar';
 import { CheckboxModule } from 'primeng/checkbox';
+import { DropdownModule } from 'primeng/dropdown';
 
 //-------- FIREBASE -----------
 import { AngularFireModule } from '@angular/fire/compat';
@@ -106,6 +107,7 @@ import { environment } from 'src/environments/environment';
     ConfirmDialogModule,
     SidebarModule,
     CheckboxModule,
+    DropdownModule,
     // FIREBASE
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

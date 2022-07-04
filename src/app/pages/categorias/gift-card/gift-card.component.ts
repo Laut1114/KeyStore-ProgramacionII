@@ -17,7 +17,6 @@ export class GiftCardComponent implements OnInit {
 
   public giftCard: ProductInterface[];
   public formProducto: FormGroup;
-  private carritoProduct: Array<any> = [];
 
   public header: string = 'Agregar un nuevo producto';
   public edit: Boolean = false;
@@ -42,19 +41,7 @@ export class GiftCardComponent implements OnInit {
       descripcion: [''],
     })
   }
-
-  getProducts() {
-    this.productService.getGiftCardS().subscribe((producto) => {
-      this.giftCard = producto;
-      this.loading = false;
-    })
-  }
-
-  addCart(productSelected: ProductInterface) {
-    this.productService.carro.emit(productSelected);
-    console.log("en teoria enviada al carrito");
-  }
-
+  
   ngOnInit() {
     if (this.authService.userLogged) {
       this.logged = true;
@@ -64,6 +51,18 @@ export class GiftCardComponent implements OnInit {
     setTimeout(() => {
       this.getProducts();
     }, 1500);
+  }
+
+  getProducts() {
+    this.productService.getGiftCardS().subscribe((producto) => {
+      this.giftCard = producto;
+      this.loading = false;
+    })
+  }
+
+  addCart(productSelected: ProductInterface) {
+    this.productService.agregarCarroS(productSelected)
+    this.messageService.add({ severity: 'success', summary: 'Listo', detail: 'Producto agregado al Carrito' });
   }
 
   showMaximizableDialog() {
