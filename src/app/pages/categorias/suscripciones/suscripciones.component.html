@@ -4,18 +4,16 @@
     </ng-template>
 </p-messages>
 <br>
+<div class="flex card-container" *ngIf="logged && userAdmin == true">
+    <div class="flex-grow-1 flex align-items-center justify-content-start font-bold text-gray-900 p-1 border-round">
+        <p>Editar Productos</p>
+    </div>
+    <div class="flex-shrink-1 lg:flex-shrink-0 flex align-items-center justify-content-center font-bold text-gray-900 border-round"></div>
+    <div class="flex-grow-1 flex align-items-center justify-content-end font-bold text-gray-900 p-1 border-round">
+        <p-button icon="pi pi-plus" pTooltip="Agregar Juego" tooltipPosition="bottom" (click)="showMaximizableDialog()"></p-button>
+    </div>
+</div>
 <p-table [value]="suscrip" responsiveLayout="scroll" [lazy]="true" [loading]="loading">
-    <ng-template pTemplate="caption" *ngIf="logged == true">
-        <div class="flex card-container">
-            <div class="flex-grow-1 flex align-items-center justify-content-start font-bold text-gray-900 p-1 border-round">
-                <p>Editar Productos</p>
-            </div>
-            <div class="flex-shrink-1 lg:flex-shrink-0 flex align-items-center justify-content-center font-bold text-gray-900 border-round"></div>
-            <div class="flex-grow-1 flex align-items-center justify-content-end font-bold text-gray-900 p-1 border-round">
-                <p-button icon="pi pi-plus" pTooltip="Agregar Juego" tooltipPosition="bottom" (click)="showMaximizableDialog()"></p-button>
-            </div>
-        </div>
-    </ng-template>
     <ng-template pTemplate="header">
         <tr>
             <th>Imagen</th>
@@ -33,7 +31,7 @@
             <td>{{suscrip.precio | currency:'ARS $'}}</td>
             <td>{{suscrip.plataforma}}</td>
             <td><span>{{suscrip.status}}</span></td>
-            <td *ngIf="logged == true; else user">
+            <td *ngIf="logged && userAdmin == true; else user">
                 <button pButton pRipple type="button" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="bottom"
                     class=" p-button-secondary p-button-text" (click)="updateSuscripcion(suscrip)"></button>
                 <button pButton pRipple type="button" icon="pi pi-times" pTooltip="Eliminar" tooltipPosition="bottom"

@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PrimeIcons } from 'primeng/api';
-import { ProductInterface } from 'src/app/models/product';
-import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-home',

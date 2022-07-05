@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ProductInterface } from 'src/app/models/product';
-import { AuthService } from 'src/app/services/auth.service';
-import { ProductService } from 'src/app/services/product.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
   selector: 'app-suscripciones',
@@ -14,6 +14,7 @@ import { ProductService } from 'src/app/services/product.service';
 export class SuscripcionesComponent implements OnInit {
 
   logged: boolean = false;
+  userAdmin: boolean;
 
   public suscrip: ProductInterface[];
   public formProducto: FormGroup;
@@ -43,8 +44,13 @@ export class SuscripcionesComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.authService.userLogged) {
+    if (this.authService.userLogged()) {
       this.logged = true;
+      const userUid = JSON.parse(localStorage.getItem("user")!);
+      this.authService.getUser(userUid.uid).subscribe(user =>{
+        console.log(user.admin)
+        this.userAdmin = user.admin;
+      });
     }
     this.loading = true;
     setTimeout(() => {

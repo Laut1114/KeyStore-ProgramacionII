@@ -1,3 +1,6 @@
 /* :host ::ng-deep .p-fileupload-buttonbar {
     background-color: aliceblue;
 } */
+ p {
+    font-family: Arial, Helvetica, sans-serif;
+ }

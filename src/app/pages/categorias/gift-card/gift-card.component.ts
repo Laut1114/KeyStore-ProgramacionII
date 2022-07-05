@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ProductInterface } from 'src/app/models/product';
-import { AuthService } from 'src/app/services/auth.service';
-import { ProductService } from 'src/app/services/product.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { ProductService } from 'src/app/services/product/product.service';
+
 
 @Component({
   selector: 'app-gift-card',
@@ -14,6 +15,7 @@ import { ProductService } from 'src/app/services/product.service';
 export class GiftCardComponent implements OnInit {
 
   logged: boolean = false;
+  userAdmin: boolean;
 
   public giftCard: ProductInterface[];
   public formProducto: FormGroup;
@@ -43,8 +45,12 @@ export class GiftCardComponent implements OnInit {
   }
   
   ngOnInit() {
-    if (this.authService.userLogged) {
+    if (this.authService.userLogged()) {
       this.logged = true;
+      const userUid = JSON.parse(localStorage.getItem("user")!);
+      this.authService.getUser(userUid.uid).subscribe(user =>{
+        this.userAdmin = user.admin;
+      })
     }
     // "carga de tabla"
     this.loading = true;

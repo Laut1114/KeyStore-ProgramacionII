@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 
 //FIREBASE
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat/app';
+import { Observable, Subject } from 'rxjs';
 import { User } from 'src/app/models/user';
 
 
@@ -12,9 +13,10 @@ import { User } from 'src/app/models/user';
 })
 export class AuthService {
   userData: any;
+  userAdmin: boolean;
 
   constructor(public authFire: AngularFireAuth, public firestore: AngularFirestore) {
-    //GUARDADO DE DATOS DEL USUARIO Y SETEO EN NULL CUANDO CIERA SESION
+    //GUARDADO DE DATOS DEL USUARIO Y SETEO EN NULL CUANDO CIERRA SESION
     this.authFire.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
@@ -92,14 +94,21 @@ export class AuthService {
       displayName: user.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
+      admin: user.admin = false
     };
     return userRef.set(userData, {
       merge: true,
     });
   }
 
-  //DEVUELVE TRUE SI EL USUARIO ESTA LOGGEADO
-  get userLogged(): boolean {
+  getUser(uid: string) : Observable<any> {
+    const userRef: AngularFirestoreDocument<any> = this.firestore.doc(`users/${uid}`);
+    const data = userRef.valueChanges()
+    return data
+  }
+
+  //DEVUELVE TRUE SI EL USUARIO INICIO SESION
+  userLogged(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
     return user != null;
   }

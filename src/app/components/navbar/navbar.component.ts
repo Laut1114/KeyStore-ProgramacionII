@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { AuthService } from 'src/app/services/auth.service';
 import { MessageService } from 'primeng/api';
+import { AuthGuard } from 'src/app/services/auth/auth-guard.guard';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -23,7 +24,7 @@ export class NavbarComponent implements OnInit {
   visibleSidebar5: boolean;
 
   constructor(private authService: AuthService, private messageService: MessageService) {
-    this.userLog = authService.userLogged;
+    this.userLog = authService.userLogged();
   }
 
   ngOnInit() {

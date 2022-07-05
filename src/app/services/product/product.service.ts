@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable, Input, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ProductInterface } from '../models/product';
+import { ProductInterface } from '../../models/product';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { finalize, map } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/compat/storage';

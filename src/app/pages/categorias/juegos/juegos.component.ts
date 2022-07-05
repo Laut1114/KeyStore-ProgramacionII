@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ProductInterface } from 'src/app/models/product';
-import { ProductService } from 'src/app/services/product.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
   selector: 'app-juegos',
@@ -14,6 +16,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class JuegosComponent implements OnInit {
 
   logged: boolean = false;
+  userAdmin: boolean;
 
   public juegos: ProductInterface[] = [];
   public formProducto: FormGroup;
@@ -30,7 +33,7 @@ export class JuegosComponent implements OnInit {
   private imagePath: string;
   private categoria: string = "juegos"
 
-  constructor(private fb: FormBuilder, private productService: ProductService, private messageService: MessageService, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private productService: ProductService, private messageService: MessageService, private authService: AuthService, public firestore: AngularFirestore) {
     this.formProducto = this.fb.group({
       nombre: ['', Validators.required],
       precio: ['', Validators.required],
@@ -39,13 +42,17 @@ export class JuegosComponent implements OnInit {
       plataforma: ['', Validators.required],
       status: ['En Stock'],
       descripcion: [''],
-      cantidad: [1]
     });
   }
 
   ngOnInit() {
-    if (this.authService.userLogged) {
+    if (this.authService.userLogged()) {
       this.logged = true;
+      const userUid = JSON.parse(localStorage.getItem("user")!);
+      this.authService.getUser(userUid.uid).subscribe(user =>{
+        console.log(user.admin)
+        this.userAdmin = user.admin;
+      });
     }
     this.loading = true;
     setTimeout(() => {

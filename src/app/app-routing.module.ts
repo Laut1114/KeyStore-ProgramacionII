@@ -8,6 +8,7 @@ import { SoftwareComponent } from './pages/categorias/software/software.componen
 import { SuscripcionesComponent } from './pages/categorias/suscripciones/suscripciones.component';
 import { HomeComponent } from './pages/home/home.component';
 import { OfertasComponent } from './pages/ofertas/ofertas.component';
+import { AuthGuard } from './services/auth/auth-guard.guard';
 
 const routes: Routes = [
   {
@@ -41,6 +42,7 @@ const routes: Routes = [
   {
     path: 'carrito',
     component: CarritoComponent,
+    canActivate: [AuthGuard],
   }
 ];
 
